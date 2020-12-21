@@ -33,10 +33,15 @@ import integrador.sistemaBanco.model.SesionCliente;
 import integrador.sistemaBanco.model.SolicitudDePoliza;
 import integrador.sistemaBanco.model.Transaccion;
 import integrador.sistemaBanco.on.GestionClienteON;
+import integrador.sistemaBanco.on.GestionClienteONLocal;
 import integrador.sistemaBanco.on.GestionCuentaON;
+import integrador.sistemaBanco.on.GestionCuentaONLocal;
 import integrador.sistemaBanco.on.GestionPolizaON;
+import integrador.sistemaBanco.on.GestionPolizaONLocal;
 import integrador.sistemaBanco.on.GestionSesionON;
+import integrador.sistemaBanco.on.GestionSesionONLocal;
 import integrador.sistemaBanco.on.GestionTransaccionesON;
+import integrador.sistemaBanco.on.GestionTransaccionesONLocal;
 
 /**
  * Esta clase implementa la logica que se utilizara en las diferentes interfaces
@@ -47,18 +52,18 @@ import integrador.sistemaBanco.on.GestionTransaccionesON;
  */
 @Named
 @SessionScoped
-public class ClientesBean implements Serializable {
+public class ClientesBean implements Serializable  {
 	// Atributos de la clase
 	@Inject
-	private GestionClienteON gestionCliente;
+	private GestionClienteONLocal gestionCliente;
 	@Inject
-	private GestionCuentaON gestionCuenta;
+	private GestionCuentaONLocal gestionCuenta;
 	@Inject
-	private GestionSesionON gestionSesion;
+	private GestionSesionONLocal gestionSesion;
 	@Inject
-	private GestionTransaccionesON gestionTransaccion;
+	private GestionTransaccionesONLocal gestionTransaccion;
 	@Inject
-	private GestionPolizaON gestionPolizas;
+	private GestionPolizaONLocal gestionPolizas;
 	
 
 	private Cliente cliente;
@@ -743,35 +748,35 @@ public class ClientesBean implements Serializable {
 		lstPolizasAprobados = gestionPolizas.polizasAprovados(cedula);
 	}
 
-	public GestionClienteON getGestionCliente() {
+	public GestionClienteONLocal getGestionCliente() {
 		return gestionCliente;
 	}
 
-	public void setGestionCliente(GestionClienteON gestionCliente) {
+	public void setGestionCliente(GestionClienteONLocal gestionCliente) {
 		this.gestionCliente = gestionCliente;
 	}
 
-	public GestionCuentaON getGestionCuenta() {
+	public GestionCuentaONLocal getGestionCuenta() {
 		return gestionCuenta;
 	}
 
-	public void setGestionCuenta(GestionCuentaON gestionCuenta) {
+	public void setGestionCuenta(GestionCuentaONLocal gestionCuenta) {
 		this.gestionCuenta = gestionCuenta;
 	}
 
-	public GestionSesionON getGestionSesion() {
+	public GestionSesionONLocal  getGestionSesion() {
 		return gestionSesion;
 	}
 
-	public void setGestionSesion(GestionSesionON gestionSesion) {
+	public void setGestionSesion(GestionSesionONLocal gestionSesion) {
 		this.gestionSesion = gestionSesion;
 	}
 
-	public GestionPolizaON getGestionPolizas() {
+	public GestionPolizaONLocal getGestionPolizas() {
 		return gestionPolizas;
 	}
 
-	public void setGestionPolizas(GestionPolizaON gestionPolizas) {
+	public void setGestionPolizas(GestionPolizaONLocal gestionPolizas) {
 		this.gestionPolizas = gestionPolizas;
 	}
 
@@ -800,11 +805,11 @@ public class ClientesBean implements Serializable {
 		this.mesesPoliza = mesesPoliza;
 	}
 
-	public GestionTransaccionesON getGestionTransaccion() {
+	public GestionTransaccionesONLocal getGestionTransaccion() {
 		return gestionTransaccion;
 	}
 
-	public void setGestionTransaccion(GestionTransaccionesON gestionTransaccion) {
+	public void setGestionTransaccion(GestionTransaccionesONLocal gestionTransaccion) {
 		this.gestionTransaccion = gestionTransaccion;
 	}
 

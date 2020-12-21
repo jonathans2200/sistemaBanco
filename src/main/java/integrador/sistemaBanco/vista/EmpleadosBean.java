@@ -28,6 +28,7 @@ import org.primefaces.event.MoveEvent;
 
 import integrador.sistemaBanco.model.Empleado;
 import integrador.sistemaBanco.on.GestionEmpleadoON;
+import integrador.sistemaBanco.on.GestionEmpleadoONLocal;
 
 
 
@@ -39,10 +40,10 @@ import integrador.sistemaBanco.on.GestionEmpleadoON;
  */
 @Named
 @RequestScoped
-public class EmpleadosBean implements Serializable {
+public class EmpleadosBean  implements Serializable {
 
 	@Inject 
-	private GestionEmpleadoON empleadoON;
+	private GestionEmpleadoONLocal empleadoON;
 	private Empleado empleado;
 
 	private boolean ced;
@@ -143,13 +144,16 @@ public class EmpleadosBean implements Serializable {
 	}
 	
 
-	public GestionEmpleadoON getEmpleadoON() {
+	
+
+
+	public GestionEmpleadoONLocal getEmpleadoON() {
 		return empleadoON;
 	}
 
 
 
-	public void setEmpleadoON(GestionEmpleadoON empleadoON) {
+	public void setEmpleadoON(GestionEmpleadoONLocal empleadoON) {
 		this.empleadoON = empleadoON;
 	}
 

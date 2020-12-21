@@ -13,7 +13,9 @@ import javax.inject.Named;
 import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.SesionCliente;
 import integrador.sistemaBanco.on.GestionClienteON;
+import integrador.sistemaBanco.on.GestionClienteONLocal;
 import integrador.sistemaBanco.on.GestionSesionON;
+import integrador.sistemaBanco.on.GestionSesionONLocal;
 
 /**
  * Esta clase implementa la logica que se utilizara en las diferentes interfaces
@@ -24,13 +26,13 @@ import integrador.sistemaBanco.on.GestionSesionON;
  */
 @Named
 @SessionScoped
-public class LoginClientesBean implements Serializable{
+public class LoginClientesBean implements Serializable {
 	// Atributos de la clase
 	@Inject
-	private GestionSesionON gestionUsuario;
+	private GestionSesionONLocal gestionUsuario;
 	@Inject
-	private GestionClienteON gestionCliente;
-private int intentos;
+	private GestionClienteONLocal gestionCliente;
+    private int intentos;
 	private Cliente cliente;
 	private String usuario;
 	private String contrasena;
@@ -45,17 +47,27 @@ private int intentos;
 		cliente = new Cliente();
 	}
 
-	public GestionSesionON getGestionUsuario() {
+	
+public GestionSesionONLocal getGestionUsuario() {
 		return gestionUsuario;
 	}
 
-	public void setGestionUsuario(GestionSesionON gestionUsuario) {
+
+	public void setGestionUsuario(GestionSesionONLocal gestionUsuario) {
 		this.gestionUsuario = gestionUsuario;
 	}
 
-	public GestionClienteON getGestionCliente() {
+
+	public GestionClienteONLocal getGestionCliente() {
 		return gestionCliente;
 	}
+
+
+	public void setGestionCliente(GestionClienteONLocal gestionCliente) {
+		this.gestionCliente = gestionCliente;
+	}
+
+
 /**
  * para obtener los intentos fallidos
  * @return

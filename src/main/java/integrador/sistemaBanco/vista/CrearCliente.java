@@ -26,8 +26,11 @@ import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.Transaccion;
 import integrador.sistemaBanco.on.GestionClienteON;
+import integrador.sistemaBanco.on.GestionClienteONLocal;
 import integrador.sistemaBanco.on.GestionCuentaON;
+import integrador.sistemaBanco.on.GestionCuentaONLocal;
 import integrador.sistemaBanco.on.GestionTransaccionesON;
+import integrador.sistemaBanco.on.GestionTransaccionesONLocal;
 
 
 /**  Esta clase implementa la logica que se utilizara en las diferentes interfaces
@@ -42,11 +45,11 @@ public class CrearCliente implements Serializable{
 	//Atributos de la clase
 	
 	@Inject
-	private GestionClienteON gestionCliente;
+	private GestionClienteONLocal gestionCliente;
 	@Inject
-	private GestionCuentaON gestionCuenta;
+	private GestionCuentaONLocal gestionCuenta;
 	@Inject
-	private GestionTransaccionesON gestionTransaccion;
+	private GestionTransaccionesONLocal gestionTransaccion;
 	
 	private Cliente cliente;
 	private String numeroCuenta;
@@ -71,31 +74,37 @@ public class CrearCliente implements Serializable{
 	
 	
 	
-	public GestionClienteON getGestionCliente() {
+	public GestionClienteONLocal getGestionCliente() {
 		return gestionCliente;
 	}
 
 
 
-	public void setGestionCliente(GestionClienteON gestionCliente) {
+	public void setGestionCliente(GestionClienteONLocal gestionCliente) {
 		this.gestionCliente = gestionCliente;
 	}
 
 
 
-	public GestionCuentaON getGestionCuenta() {
+	public void setGestionTransaccion(GestionTransaccionesONLocal gestionTransaccion) {
+		this.gestionTransaccion = gestionTransaccion;
+	}
+
+
+
+	public GestionCuentaONLocal getGestionCuenta() {
 		return gestionCuenta;
 	}
 
 
 
-	public void setGestionCuenta(GestionCuentaON gestionCuenta) {
+	public void setGestionCuenta(GestionCuentaONLocal gestionCuenta) {
 		this.gestionCuenta = gestionCuenta;
 	}
 
 
 
-	public GestionTransaccionesON getGestionTransaccion() {
+	public GestionTransaccionesONLocal getGestionTransaccion() {
 		return gestionTransaccion;
 	}
 

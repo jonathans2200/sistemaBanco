@@ -30,7 +30,9 @@ import integrador.sistemaBanco.model.Poliza;
 import integrador.sistemaBanco.model.SolicitudDePoliza;
 import integrador.sistemaBanco.on.GestionCorreoON;
 import integrador.sistemaBanco.on.GestionCuentaON;
+import integrador.sistemaBanco.on.GestionCuentaONLocal;
 import integrador.sistemaBanco.on.GestionPolizaON;
+import integrador.sistemaBanco.on.GestionPolizaONLocal;
 /**
  * Esta clase implementa la logica que se utilizara en las diferentes interfaces
  * para poder utilizar las entidades o clases
@@ -43,9 +45,10 @@ import integrador.sistemaBanco.on.GestionPolizaON;
 @RequestScoped
 public class PolizaBean implements Serializable {
 	@Inject
-	private GestionPolizaON polizaON;
+	private GestionPolizaONLocal polizaON;
 	@Inject
-	private GestionCuentaON cuentaON;
+	private GestionCuentaONLocal cuentaON;
+	
 	private List<SolicitudDePoliza> solicitudes;
 	private SolicitudDePoliza solicitudDePoliza;
 	private SolicitudDePoliza solicitudDePolizaAux;
@@ -96,6 +99,86 @@ public class PolizaBean implements Serializable {
 		solicitudes = actual;
 	}
 
+
+	public GestionPolizaONLocal getPolizaON() {
+		return polizaON;
+	}
+
+	public void setPolizaON(GestionPolizaONLocal polizaON) {
+		this.polizaON = polizaON;
+	}
+
+	public GestionCuentaONLocal getCuentaON() {
+		return cuentaON;
+	}
+
+	public void setCuentaON(GestionCuentaONLocal cuentaON) {
+		this.cuentaON = cuentaON;
+	}
+
+	public List<SolicitudDePoliza> getSolicitudes() {
+		return solicitudes;
+	}
+
+	public void setSolicitudes(List<SolicitudDePoliza> solicitudes) {
+		this.solicitudes = solicitudes;
+	}
+
+	public SolicitudDePoliza getSolicitudDePoliza() {
+		return solicitudDePoliza;
+	}
+
+	public void setSolicitudDePoliza(SolicitudDePoliza solicitudDePoliza) {
+		this.solicitudDePoliza = solicitudDePoliza;
+	}
+
+	public SolicitudDePoliza getSolicitudDePolizaAux() {
+		return solicitudDePolizaAux;
+	}
+
+	public void setSolicitudDePolizaAux(SolicitudDePoliza solicitudDePolizaAux) {
+		this.solicitudDePolizaAux = solicitudDePolizaAux;
+	}
+
+	public GestionCorreoON getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(GestionCorreoON correo) {
+		this.correo = correo;
+	}
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	public boolean isEditabledos() {
+		return editabledos;
+	}
+
+	public void setEditabledos(boolean editabledos) {
+		this.editabledos = editabledos;
+	}
 
 	/**
 	 * Metodo para carfar las solicitudes aprobadas segun el tipo de cliente

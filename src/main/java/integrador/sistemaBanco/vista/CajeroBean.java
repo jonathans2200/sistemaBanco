@@ -23,9 +23,9 @@ import org.primefaces.model.charts.pie.PieChartModel;
 import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.Transaccion;
-import integrador.sistemaBanco.on.GestionClienteON;
-import integrador.sistemaBanco.on.GestionCuentaON;
-import integrador.sistemaBanco.on.GestionTransaccionesON;
+import integrador.sistemaBanco.on.GestionClienteONLocal;
+import integrador.sistemaBanco.on.GestionCuentaONLocal;
+import integrador.sistemaBanco.on.GestionTransaccionesONLocal;
 
 /**
  * Clase de tipo Bean para el manejo de JSF y archivos xhtml
@@ -35,13 +35,13 @@ import integrador.sistemaBanco.on.GestionTransaccionesON;
  */
 @Named
 @RequestScoped
-public class CajeroBean implements Serializable {
+public class CajeroBean implements Serializable  {
 	@Inject
-	private GestionClienteON clienteON;
+	private GestionClienteONLocal clienteON;
 	@Inject
-	private GestionCuentaON cuentaON;
+	private GestionCuentaONLocal cuentaON;
 	@Inject
-	private GestionTransaccionesON transaccionON;
+	private GestionTransaccionesONLocal transaccionON;
 
 	private Cliente cliente;
 	private Double monto;
@@ -485,27 +485,27 @@ public class CajeroBean implements Serializable {
 		return null;
 	}
 
-	public GestionClienteON getClienteON() {
+	public GestionClienteONLocal getClienteON() {
 		return clienteON;
 	}
 
-	public void setClienteON(GestionClienteON clienteON) {
+	public void setClienteON(GestionClienteONLocal clienteON) {
 		this.clienteON = clienteON;
 	}
 
-	public GestionCuentaON getCuentaON() {
+	public GestionCuentaONLocal getCuentaON() {
 		return cuentaON;
 	}
 
-	public void setCuentaON(GestionCuentaON cuentaON) {
+	public void setCuentaON(GestionCuentaONLocal cuentaON) {
 		this.cuentaON = cuentaON;
 	}
 
-	public GestionTransaccionesON getTransaccionON() {
+	public GestionTransaccionesONLocal getTransaccionON() {
 		return transaccionON;
 	}
 
-	public void setTransaccionON(GestionTransaccionesON transaccionON) {
+	public void setTransaccionON(GestionTransaccionesONLocal transaccionON) {
 		this.transaccionON = transaccionON;
 	}
 

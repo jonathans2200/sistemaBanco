@@ -25,6 +25,7 @@ import integrador.sistemaBanco.dao.SolicitudDePolizasDAO;
 import integrador.sistemaBanco.model.Empleado;
 import integrador.sistemaBanco.model.SolicitudDePoliza;
 import integrador.sistemaBanco.on.GestionEmpleadoON;
+import integrador.sistemaBanco.on.GestionEmpleadoONLocal;
 
 
 
@@ -36,10 +37,10 @@ import integrador.sistemaBanco.on.GestionEmpleadoON;
  */
 @Named
 @SessionScoped
-public class LoginBean implements Serializable{
+public class LoginBean  implements Serializable{
 	
 	@Inject
-	private GestionEmpleadoON empleadoON;
+	private GestionEmpleadoONLocal empleadoON;
 	private String usuario;
 
 	private String contrasena;
@@ -64,13 +65,13 @@ public class LoginBean implements Serializable{
 	}
 
 
-	public GestionEmpleadoON getEmpleadoON() {
+	public GestionEmpleadoONLocal getEmpleadoON() {
 		return empleadoON;
 	}
 
 
 
-	public void setEmpleadoON(GestionEmpleadoON empleadoON) {
+	public void setEmpleadoON(GestionEmpleadoONLocal empleadoON) {
 		this.empleadoON = empleadoON;
 	}
 
@@ -266,16 +267,16 @@ public class LoginBean implements Serializable{
 	}
 	
 	
-	
+/*	
 	public String datos() {
 		String res = empleadoON.getDatos();
 		System.out.println(res);
 		return "";
 	}
-	
+	*/
 	
 	public void addMessage(String summary, String detail) {
-		 System.out.println(summary+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmkkk"+detail);
+		 System.out.println(summary+"mensaje +kkk"+detail);
 	       
 	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail));
 	    }
