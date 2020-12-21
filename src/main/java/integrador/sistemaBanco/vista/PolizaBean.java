@@ -55,12 +55,18 @@ public class PolizaBean implements Serializable {
 	GestionCorreoON correo = new GestionCorreoON();
 	private boolean editable = false;
 	private Empleado empleado ;
+	private double interes;
+	private double total;
 	private String motivo;
+	private int dias;
+	private double monto;
 	private boolean editabledos = false;
 	@PostConstruct
 	public void init() {
 		solicitudes = new ArrayList<SolicitudDePoliza>();
 	loadDataSol();
+	interes=0;
+	monto=0;
 	}
 	
 	/**
@@ -128,6 +134,22 @@ public class PolizaBean implements Serializable {
 		return solicitudDePoliza;
 	}
 
+	public int getDias() {
+		return dias;
+	}
+
+	public void setDias(int dias) {
+		this.dias = dias;
+	}
+
+	public double getMonto() {
+		return monto;
+	}
+
+	public void setMonto(double monto) {
+		this.monto = monto;
+	}
+
 	public void setSolicitudDePoliza(SolicitudDePoliza solicitudDePoliza) {
 		this.solicitudDePoliza = solicitudDePoliza;
 	}
@@ -150,6 +172,22 @@ public class PolizaBean implements Serializable {
 
 	public boolean isEditable() {
 		return editable;
+	}
+
+	public double getInteres() {
+		return interes;
+	}
+
+	public void setInteres(double interes) {
+		this.interes = interes;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 
 	public void setEditable(boolean editable) {
@@ -435,7 +473,49 @@ public class PolizaBean implements Serializable {
 		// committed.
 		facesContext.responseComplete();
 	}
-
+/**
+ * metodo para obtener  el interes de acuerdo a los dias de la poliza
+ * @param tiempo valor en dias para la poliza
+ * @return
+ */
+	public Double obtenerInteres(int tiempo) {
+		
+		if(tiempo>=30 && tiempo <=59) {
+		return 5.50	;
+		}else 
+			if(tiempo>=60 &&  tiempo <=89) {
+			return 5.75;
+			}else 
+				if(tiempo>=90 &&  tiempo <=179) {
+					return 6.25;
+					}else 
+						if(tiempo>=180 &&  tiempo <=269) {
+							return 7.00;
+							}else 
+								if(tiempo>=270 &&  tiempo <=359) {
+									return 7.50;
+									}else 
+										if(tiempo>=360) {
+											return 8.50;
+											}
+		return null;
+		
+		
+	}
 	
-
+	
+	/***
+	 * metodo que permite simular una poliza
+	 * @param mes
+	 * @param monto
+	 */
+	public String tablaAmor(){
+		    interes= obtenerInteres(dias);
+		   total =((monto*interes)*dias)/100;
+		        System.out.println("monto inicial "+monto);
+		        System.out.println("interes es " + interes);
+		        System.out.println("valor total " + total);
+		      
+		  return null;
+	}
 }

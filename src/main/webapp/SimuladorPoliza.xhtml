@@ -29,15 +29,15 @@
 
 											<div class="form-group">
 												<label>Ingrese monto del Poliza a solicitar</label>
-												<h:inputText id="nombre" value="#{clientesBean.montoPoliza}"
+												<h:inputText id="monto" value="#{polizaBean.monto}"
 													type="text" class="form-control form-control-line">
 												</h:inputText>
 
 											</div>
 											<div class="form-group">
 												<label>Ingrese el plazo de Poliza en Dias</label>
-												<h:inputText id="apellido"
-													value="#{clientesBean.mesesPoliza}" type="text"
+												<h:inputText id="dias"
+													value="#{polizaBean.dias}" type="text"
 													class="form-control form-control-line">
 												</h:inputText>
 											</div>
@@ -48,14 +48,14 @@
 										<div class="col-lg-6">
 											<label>TAZA DE INTERES</label>
 											<div class="form-group input-group">
-												<h:inputText id="in" value="#{clientesBean.interes}"
+												<h:inputText id="int" 
 													type="text" class="form-control form-control-line">
 													
 												</h:inputText>
 											</div>
 											<label>MONTO A RECIBIR </label>
 											<div class="form-group input-group">
-												<h:inputText id="total" value="#{clientesBean.totalPoliza}"
+												<h:inputText id="total"  
 													type="text" class="form-control form-control-line">
 													
 												</h:inputText>
@@ -67,13 +67,12 @@
 									<!-- <p:growl id="message" showDetail="true" class="ui-growl" />-->
 
 									<p:commandButton value="CONSULTAR POLIZA"
-										action="#}"
+										action="#{polizaBean.tablaAmor()}"
 										update="messages" class="btn btn-success btn-lg">
 										
 									</p:commandButton>
 
-					
-										
+				
 								</h:form>
 							</div>
 
