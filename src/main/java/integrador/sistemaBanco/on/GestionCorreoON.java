@@ -19,7 +19,11 @@ import javax.mail.internet.MimeMultipart;
 
 import integrador.sistemaBanco.model.Poliza;
 
-
+/**
+ * clase donde tendremos nuestro objeto de negocios para la gestion de correo
+ * @author jonat
+ *
+ */
 
 public class GestionCorreoON {
 

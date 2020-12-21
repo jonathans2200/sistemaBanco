@@ -13,6 +13,11 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 import org.primefaces.model.file.UploadedFile;
+/**
+ *  Esta clase representa una entidad o tabla llamada solicitudPoliza de la base de datos y sus columnas
+ * @author jonat
+ *
+ */
 
 @Entity
 public class SolicitudDePoliza {

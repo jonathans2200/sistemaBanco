@@ -37,7 +37,11 @@ import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.DetallePoliza;
 import integrador.sistemaBanco.model.Poliza;
 import integrador.sistemaBanco.model.SolicitudDePoliza;
-
+/**
+ * clase donde tendremos nuestro objeto de negocios para la gestion de polizas
+ * @author jonat
+ *
+ */
 @Stateless
 public class GestionPolizaON {
 	@Inject

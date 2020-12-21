@@ -31,7 +31,13 @@ import integrador.sistemaBanco.model.SolicitudDePoliza;
 import integrador.sistemaBanco.on.GestionCorreoON;
 import integrador.sistemaBanco.on.GestionCuentaON;
 import integrador.sistemaBanco.on.GestionPolizaON;
-
+/**
+ * Esta clase implementa la logica que se utilizara en las diferentes interfaces
+ * para poder utilizar las entidades o clases
+ * 
+ * @author jonat
+ *
+ */
 
 @Named
 @RequestScoped

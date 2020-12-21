@@ -30,7 +30,7 @@ public class LoginClientesBean implements Serializable{
 	private GestionSesionON gestionUsuario;
 	@Inject
 	private GestionClienteON gestionCliente;
-
+private int intentos;
 	private Cliente cliente;
 	private String usuario;
 	private String contrasena;
@@ -41,6 +41,7 @@ public class LoginClientesBean implements Serializable{
 	 */
 	@PostConstruct
 	public void init() {
+		intentos=0;
 		cliente = new Cliente();
 	}
 
@@ -54,6 +55,20 @@ public class LoginClientesBean implements Serializable{
 
 	public GestionClienteON getGestionCliente() {
 		return gestionCliente;
+	}
+/**
+ * para obtener los intentos fallidos
+ * @return
+ */
+	public int getIntentos() {
+		return intentos;
+	}
+/**
+ * para guardar los intendo fallidos
+ * @param intentos
+ */
+	public void setIntentos(int intentos) {
+		this.intentos = intentos;
 	}
 
 	public void setGestionCliente(GestionClienteON gestionCliente) {
@@ -130,7 +145,7 @@ public class LoginClientesBean implements Serializable{
 				sesionCliente.setCliente(c);
 				sesionCliente.setFechaSesion(new Date());
 				sesionCliente.setEstado("Correcto");
-				gestionUsuario.guardarSesion(sesionCliente);
+				gestionUsuario.guardarSesion(sesionCliente,intentos);
 				try {
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", c);
 					FacesContext contex = FacesContext.getCurrentInstance();
@@ -144,13 +159,20 @@ public class LoginClientesBean implements Serializable{
 				sesionCliente2.setCliente(c);
 				sesionCliente2.setFechaSesion(new Date());
 				sesionCliente2.setEstado("Incorrecto");
-				gestionUsuario.guardarSesion(sesionCliente2);
-				return "InicioClientes";
+				intentos+=1;
+				System.out.println(intentos);
+				gestionUsuario.guardarSesion(sesionCliente2,intentos);
 			}
 		}
 		return "InicioClientes";
 	}
 
+	
+	public String bloquearUsuario() {
+	
+		return "InicioClientes";
+	}
+	
 	/**
 	 * metodo  para finalizar la sesion he ir al login
 	 * @return

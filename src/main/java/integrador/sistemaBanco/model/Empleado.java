@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 /**
- * Clase representa un Entidad (tabla) en la Base de Datos
+ * Clase representa un Entidad (empleado) en la Base de Datos
  * Es para el registro de Empleados de la Institucion
  * @author jonat
  * 

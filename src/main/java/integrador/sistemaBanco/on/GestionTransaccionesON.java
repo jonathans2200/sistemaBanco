@@ -18,6 +18,13 @@ import integrador.sistemaBanco.model.Transaccion;
 import integrador.sistemaBanco.model.TransfereciaLocal;
 import integrador.sistemaBanco.utils.Respuesta;
 
+/**
+ * clase donde tendremos nuestro objeto de negocios para la gestion de transacciones locales y externas
+ * @author jonat
+ *
+ */
+
+
 @Stateless
 public class GestionTransaccionesON {
 	@Inject

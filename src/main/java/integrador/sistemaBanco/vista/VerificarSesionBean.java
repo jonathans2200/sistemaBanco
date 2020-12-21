@@ -9,7 +9,11 @@ import javax.inject.Named;
 
 import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.Empleado;
-
+/**
+ * clase que se eutilizara para verificar las sesiones del cliente o del usuario(admin/cajero/jefe de POlizas)
+ * @author jonat
+ *
+ */
 
 
 @Named

@@ -8,7 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
+/**
+ *  Esta clase representa una entidad o tabla llamada transferencaiLocal de la base de datos y sus columnas
+ * @author jonat
+ *
+ */
 @Entity
 public class TransfereciaLocal implements Serializable{
 	@Id  

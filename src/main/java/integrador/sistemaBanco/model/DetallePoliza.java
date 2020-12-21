@@ -10,6 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+/**
+ *  Esta clase representa una entidad o tabla llamada detallePoliza de la base de datos y sus columnas
+ * @author jonat
+ *
+ */
+
 @Entity
 public class DetallePoliza implements Serializable {
 	@Id

@@ -10,7 +10,11 @@ import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
-
+/**
+ * clase para la conexion de nuestro datasourse
+ * @author jonat
+ *
+ */
 public class Resources {
 
 	String dsName = "java:jboss/datasources/sisBancoDS";

@@ -27,7 +27,12 @@ import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.DetallePoliza;
 import integrador.sistemaBanco.model.Poliza;
-
+/**
+ * /**
+ * clase donde tendremos nuestro objeto de negocios para la gestion de Cuentas
+ * @author jonat
+ *
+ */
 @Stateless
 public class GestionCuentaON {
 

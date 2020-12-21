@@ -8,6 +8,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import integrador.sistemaBanco.model.DetallePoliza;
+
+/**
+ *  Esta clase me permite hacer las funciones basicas en una base de datos utilizando la clase detalle de Polizas
+ * @author jonat
+ *
+ */
+
 @Stateless
 public class DetallePolizaDAO {
 	@PersistenceContext(name = "sistemaBancoPersistenceUnit") 

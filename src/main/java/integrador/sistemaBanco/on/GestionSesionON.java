@@ -8,10 +8,17 @@ import java.util.concurrent.CompletableFuture;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.naming.InterruptedNamingException;
 
 import integrador.sistemaBanco.dao.SesionClienteDAO;
 import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.SesionCliente;
+
+/**
+ * clase donde tendremos nuestro objeto de negocios para la gestion de sesiones
+ * @author jonat
+ *
+ */
 
 @Stateless
 public class GestionSesionON {
@@ -26,9 +33,33 @@ public class GestionSesionON {
 	 * 
 	 * @param sesionCliente Sesion que se guarda
 	 */
-	public void guardarSesion(SesionCliente sesionCliente) {
+	public void guardarSesion(SesionCliente sesionCliente,int fallidos) {
 		Cliente cli = sesionCliente.getCliente();
 		String destinatario = cli.getCorreo();
+		
+		if(fallidos==3) {
+			String asunto = "USUARIO BLOQUEADO";
+			String cuerpo = "BANCONET  \n"
+					+ "------------------------------------------------------------------------------\n"
+					+ "              Estimado(a): " + cli.getNombre().toUpperCase() + " "
+					+ cli.getApellido().toUpperCase() + "\n"
+					+ "------------------------------------------------------------------------------\n"
+					+ "BANCONET le informa que el acceso a su cuenta ha sido bloqueada por favor \n  "
+					+ "comunicarse con el banco   \n"
+					+"MOTIVO DE BLOQUEO   \n"
+					+ "  INTENTOS DE INGRESAR A LA CUENTA      "+ fallidos +"\n"
+					+ "   Fecha: " + obtenerFecha(sesionCliente.getFechaSesion())
+					+ "                                     \n"
+					+ "                                                                              \n"
+					+ "------------------------------------------------------------------------------\n";
+			CompletableFuture.runAsync(() -> {
+				try {
+					correo.enviarCorreo(destinatario, asunto, cuerpo);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
+		}else
 		if (sesionCliente.getEstado().equalsIgnoreCase("Incorrecto")) {
 			// A quien le quieres escribir.
 
@@ -39,7 +70,8 @@ public class GestionSesionON {
 					+ cli.getApellido().toUpperCase() + "\n"
 					+ "------------------------------------------------------------------------------\n"
 					+ "BANCONET le informa que el acceso a su cuenta ha sido fallida.    \n"
-					+ "                       Fecha: " + obtenerFecha(sesionCliente.getFechaSesion())
+					+ "  INTENTOS FALLIDOS      "+fallidos
+					+ "   Fecha: " + obtenerFecha(sesionCliente.getFechaSesion())
 					+ "                                     \n"
 					+ "                                                                              \n"
 					+ "------------------------------------------------------------------------------\n";
@@ -52,6 +84,7 @@ public class GestionSesionON {
 			});
 
 		} else {
+		
 			// A quien le quieres escribir.
 
 			String asunto = "INICIO DE SESION CORRECTA";

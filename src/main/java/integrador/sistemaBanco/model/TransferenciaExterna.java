@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/**
+ *  Esta clase representa una entidad o tabla llamada transferencia Externa de la base de datos y sus columnas
+ * @author jonat
+ *
+ */
 @Entity
 public class TransferenciaExterna {
 	@Id   

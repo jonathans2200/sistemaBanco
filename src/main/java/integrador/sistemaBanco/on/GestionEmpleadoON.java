@@ -14,7 +14,7 @@ import integrador.sistemaBanco.dao.EmpleadoDAO;
 import integrador.sistemaBanco.model.Empleado;
 
 /**
- * 
+ * clase donde tendremos nuestro objeto de negocios para la gestion de Empleados
  * @author jonat
  *
  */

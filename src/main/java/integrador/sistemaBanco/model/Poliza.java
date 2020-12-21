@@ -17,7 +17,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+/**
+ *  Esta clase representa una entidad o tabla llamada poliza de la base de datos y sus columnas
+ * @author jonat
+ *
+ */
 
 @Entity
 public class Poliza implements Serializable {

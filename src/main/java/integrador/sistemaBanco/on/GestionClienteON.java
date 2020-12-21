@@ -7,7 +7,11 @@ import javax.inject.Inject;
 
 import integrador.sistemaBanco.dao.ClienteDAO;
 import integrador.sistemaBanco.model.Cliente;
-
+/**
+ * clase donde tendremos nuestro objeto de negocios para la gestion de Cliente
+ * @author jonat
+ *
+ */
 @Stateless
 public class GestionClienteON {
 	@Inject

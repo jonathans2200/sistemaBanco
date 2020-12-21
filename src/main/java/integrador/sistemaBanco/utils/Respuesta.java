@@ -7,7 +7,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
-
+/**
+ * clase donde tendremos los datos del cliente o de la  cuenta de ahorros
+ * @author jonat
+ *
+ */
 
 
 public class Respuesta {
