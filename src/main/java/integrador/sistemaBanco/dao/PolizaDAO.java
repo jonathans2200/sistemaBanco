@@ -44,7 +44,7 @@ public class PolizaDAO {
 	 * Metodo para obtener un Poliza
 	 * @param codigoPoliza El parametro codigoPoliza me permite obtener el Poliza con el codigo
 	 * igual al paremetro 
-	 * @returnn Un Poliza
+	 * @return Un Poliza
 	 */
 	public Poliza read(int codigoPoliza) {
 		return em.find(Poliza.class, codigoPoliza);

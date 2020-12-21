@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
  * Esta clase Representa una Entidad (Tabla) en la Base de Datos.
  * Es para el registro de las transacciones que puede realizar un Cliente
  * @author jonat
- *@version: 1.0
+ *
  */
 @Entity
 public class Transaccion implements Serializable {

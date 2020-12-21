@@ -15,34 +15,35 @@ public class DetallePolizaDAO {
 	
 	/**
 	 * Metodo para guardar un DetallePoliza
-	 * @param s El parametro s me permite asignar los datos del Detalle Credito
+	 * @param s El parametro s me permite asignar los datos del Detalle Poliza
 	 */
 	public void insert(DetallePoliza s) {
 		em.persist(s);
 	}
 	
 	/**
-	 *Metodo para actualizar el Detalle Credito
+	 *Metodo para actualizar el Detalle Poliza
 	 * @param s El parametro s me permite asignar los nuevos valores 
-	 * a un Detalle Credito
+	 * a un Detalle Poliza
 	 */
 	public void update(DetallePoliza s) {
 		em.merge(s);
 	} 
 	
 	/**
-	 * Metodo para obtener un Detalle Credito
-	 * @param codigoPoliza El parametro codigoPoliza me permite obtener el Detalle Credito con el codigo
-	 * igual al paremetro 
-	 * @returnn Un Detalle Credito
+	 * Metodo para obtener un Detalle Poliza
+	 * 
+	 * @param codigoPoliza El parametro codigoPoliza me permite obtener el Detalle
+	 *                     Poliza con el codigo igual al paremetro
+	 *
 	 */
 	public DetallePoliza read(int codigoPoliza) {
 		return em.find(DetallePoliza.class, codigoPoliza);
 	} 
 	
 	/**
-	 * Metodo para eliminar un credito
-	 * @param codigoPoliza El parametro codigoPoliza me permite eliminar el Detalle Credito con el codigo
+	 * Metodo para eliminar un Poliza
+	 * @param codigoPoliza El parametro codigoPoliza me permite eliminar el Detalle Poliza con el codigo
 	 * igual al paremetro 
 	 */
 	public void delete(int codigoPoliza) {
@@ -51,10 +52,10 @@ public class DetallePolizaDAO {
 	}
 	
 	/**
-	 * Metodo para obtener los Detalle Credito de la aplicacion
-	 * @return Una lista de Detalles de Creditos
+	 * Metodo para obtener los Detalle Poliza de la aplicacion
+	 * @return Una lista de Detalles de Polizas
 	 */
-	public List<DetallePoliza> getDetallesCreditos() {
+	public List<DetallePoliza> getDetallesPolizas() {
 		String jpql = "SELECT s FROM DetallePoliza s ";
 
 		Query q = em.createQuery(jpql, DetallePoliza.class);

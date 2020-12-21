@@ -528,7 +528,7 @@ public class ClientesBean implements Serializable {
 	/**
 	 * Metodo que permite obtener las sesiones de una cliente
 	 * 
-	 * @param cedula Cedula del cliente
+	 * 
 	 * @return Lista de sesiones que tiene el cliente
 	 */
 	public List<SesionCliente> cargarSesiones() {
@@ -575,13 +575,7 @@ public class ClientesBean implements Serializable {
 	 */
 	public void validarFechas() throws Exception {
 		if (this.fechaInicio != null && this.fechaFinal != null) {
-			/*
-			 * System.out.println(fechaInicio.getClass()); DateFormat hourdateFormat = new
-			 * SimpleDateFormat("dd/MM/yyyy"); String d =
-			 * hourdateFormat.format(fechaInicio);
-			 * System.out.println(buscarCuentaDeAhorro.getNumeroCuentaDeAhorro());
-			 * System.out.println(d +"***"+fechaFinal);
-			 */
+		
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String inicioF = hourdateFormat.format(fechaInicio);
 			String finalF = hourdateFormat.format(fechaFinal);
@@ -669,13 +663,9 @@ public class ClientesBean implements Serializable {
 				lstTransacciones.removeAll(lstTransacciones);
 			}
 
-			/*
-			 * System.out.println("H"+lstTransacciones.size());
-			 * System.out.println(cedulaParametro); System.out.println(new Date());
-			 */
 		}
 
-		System.out.println("LISTA DE TRANSACCION SIZE :   " + lstTransacciones.size());
+		System.out.println("TRANSACCIONES REALIZADAS :   " + lstTransacciones.size());
 	}
 
 	/**
@@ -699,22 +689,7 @@ public class ClientesBean implements Serializable {
 		return null;
 	}
 
-	/**
-	 * Metodo que me permite validar que los egresos sean mayores a los ingresos
-	 * 
-	 * @param ingresos Variable tipo double en donde se asigna los ingresos del
-	 *                 cliente
-	 * @param egresos  Variable tipo double en donde se asigna los egresos del
-	 *                 cliente
-	 * @return Variable tipo string en donde me devuelve un mensaje si los egresos
-	 *         son mayores a los ingresos
-	 */
-	public String confirmarTasaPago(double ingresos, double egresos) {
-		if (egresos > ingresos) {
-			return "Los egresos no debe ser mayor a los ingresos";
-		}
-		return null;
-	}
+	
 
 	/**
 	 * Metodo que me permite asignar un archivo al atributo de tipo InputStream

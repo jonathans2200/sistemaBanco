@@ -64,7 +64,7 @@ public class Cliente implements Serializable {
 	
 	/** 
 	 * Metodo que permite asignarle un valor al atributo nombre 
-	 * @param cedula Variable que se asigna al atributo de la clase
+	 * @param nombre Variable que se asigna al atributo de la clase
 	 */
 	
 	public void setNombre(String nombre) {

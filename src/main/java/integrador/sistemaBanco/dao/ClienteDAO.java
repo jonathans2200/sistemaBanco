@@ -71,13 +71,13 @@ public class ClienteDAO {
 	} 
 	
 	/** 
-	 * Metodo que permite obtener un cliente de la base de datos en base a su usuario y contraseña 
+	 * Metodo que permite obtener un cliente de la base de datos en base a su usuario y contrasena 
 	 * @param usuario Usuario que utilizaremos para poder obtener el cliente
-	 * @param contra Contraseña que se utilizara para obtener el cliente
-	 * @return Cliente que se encuentre en la base de datos con un usuario y contraseña en especifico. 
-	 * @throws Exception
+	 * @param contra contrasena que se utilizara para obtener el cliente
+	 * @return Cliente que se encuentre en la base de datos con un usuario y contrasena en especifico. 
+	 * 
 	 */
-	public Cliente obtenerClienteUsuarioContraseña(String usuario,String contra) throws Exception {
+	public Cliente obtenerClienteUsuariocontrasena(String usuario,String contra) throws Exception {
 		try {
 			String jpl = "select c from Cliente c Where c.usuario =:usu AND c.clave =:contr";
 			Query q = em.createQuery(jpl, Cliente.class);
@@ -94,11 +94,11 @@ public class ClienteDAO {
 	/** 
 	 * Metodo que permite obtener un cliente dependiendo de su correo y cotraseña 
 	 * @param correo Variable de tipo String en donde se asigna el correo de la persona que se desea obtener
-	 * @param contra Variable de tipo String en donde se asigna la contraseña de la persona que se desea obtener
-	 * @return Cliente que tenga la el correo y contraseña que se han pasado como paramatro
+	 * @param contra Variable de tipo String en donde se asigna la contrasena de la persona que se desea obtener
+	 * @return Cliente que tenga la el correo y contrasena que se han pasado como paramatro
 	 * @throws Exception
 	 */
-	public Cliente obtenerClienteCorreoContraseña(String correo,String contra) throws Exception {
+	public Cliente obtenerClienteCorreocontrasena(String correo,String contra) throws Exception {
 		try {
 			String jpl = "select c from Cliente c Where c.correo =:corr AND c.clave =:contr";
 			Query q = em.createQuery(jpl, Cliente.class);

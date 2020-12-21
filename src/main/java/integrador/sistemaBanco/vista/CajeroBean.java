@@ -31,7 +31,7 @@ import integrador.sistemaBanco.on.GestionTransaccionesON;
  * Clase de tipo Bean para el manejo de JSF y archivos xhtml
  * 
  * @author jonat
- * @version: 1.0
+ * 
  */
 @Named
 @RequestScoped
@@ -182,10 +182,10 @@ public class CajeroBean implements Serializable {
 
 	/**
 	 * Asignar el valor de la cedula del cliente que va a realizar un pago de
-	 * Credito
+	 * poliza
 	 * 
 	 * @param cedulaAux El parametro cedulaAux me permite asignar la cedula del
-	 *                  cliente que va a realizar el pago de credito.
+	 *                  cliente que va a realizar el pago de poliza.
 	 */
 	public void setCedulaAux(String cedulaAux) {
 		this.cedulaAux = cedulaAux;
@@ -212,16 +212,16 @@ public class CajeroBean implements Serializable {
 	}
 
 	/**
-	 * Metodo para obtener el codigo de un Credito
+	 * Metodo para obtener el codigo de un poliza
 	 * 
-	 * @return El codigo del credito que se va a realizar el pago
+	 * @return El codigo del poliza que se va a realizar el pago
 	 */
 	public int getCodigoAux() {
 		return codigoAux;
 	}
 
 	/**
-	 * Meoto para asignar el codifo de un credito
+	 * Meoto para asignar el codifo de un poliza
 	 * 
 	 * @param codigoAux El parametro codigoAux me permite asignar el codigo de una
 	 *                  transaccion que se desea
@@ -511,7 +511,7 @@ public class CajeroBean implements Serializable {
 
 	/**
 	 * Metodo para cambiar el estado de la visualizacion de la ventana del pago de
-	 * credito
+	 * poliza
 	 * 
 	 */
 	public void activar() {
@@ -526,9 +526,9 @@ public class CajeroBean implements Serializable {
 	}
 
 	/**
-	 * Metodo para cambiar el estado de pago de credito
+	 * Metodo para cambiar el estado de pago de poliza
 	 * 
-	 * @param cod El parametro cod me permite asignar el codigo del credito que se
+	 * @param cod El parametro cod me permite asignar el codigo del poliza que se
 	 *            va a actualizar
 	 */
 	public void cambioVar(int cod) {

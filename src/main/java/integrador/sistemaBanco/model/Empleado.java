@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * Clase representa un Entidad (tabla) en la Base de Datos
  * Es para el registro de Empleados de la Institucion
  * @author jonat
- * @version: 1.0
+ * 
  */
 @Entity
 public class Empleado implements Serializable{
