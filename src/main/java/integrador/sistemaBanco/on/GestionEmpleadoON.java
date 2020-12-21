@@ -19,7 +19,7 @@ import integrador.sistemaBanco.model.Empleado;
  *
  */
 @Stateless
-public class GestionEmpleadoON {
+public class GestionEmpleadoON implements GestionEmpleadoONLocal {
 
 	@Inject
 	private EmpleadoDAO empleadoDAO;

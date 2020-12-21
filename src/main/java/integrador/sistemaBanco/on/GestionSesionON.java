@@ -21,7 +21,7 @@ import integrador.sistemaBanco.model.SesionCliente;
  */
 
 @Stateless
-public class GestionSesionON {
+public class GestionSesionON implements GestionSesionONLocal {
 	@Inject
 	private SesionClienteDAO sesionClienteDAO;
 

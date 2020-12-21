@@ -43,7 +43,7 @@ import integrador.sistemaBanco.model.SolicitudDePoliza;
  *
  */
 @Stateless
-public class GestionPolizaON {
+public class GestionPolizaON implements GestionPolizaONLocal {
 	@Inject
 	private PolizaDAO polizaDAO;
 	@Inject
@@ -98,7 +98,7 @@ public class GestionPolizaON {
 	}
 
 	/**
-	 * Método que permite actualizar un crédito;
+	 * Método que permite actualizar un poliza;
 	 * 
 	 * @param poliza Una clase Poliza para realizar el proceso de actualizacion.
 	 */
@@ -108,13 +108,13 @@ public class GestionPolizaON {
 	}
 
 	/**
-	 * Método que permite listar los créditos.
+	 * Método que permite listar los polizas.
 	 * 
-	 * @return Una lista con clases Poliza con los datos de los créditos.
+	 * @return Una lista con clases Poliza con los datos de los polizas.
 	 */
 
 	/**
-	 * Método que permite actualizar una solicitud de crédito.
+	 * Método que permite actualizar una solicitud de poliza.
 	 * 
 	 * @param SolicitudDePoliza Una clase SolicitudDePoliza para realizar el proceso
 	 *                          de actualización.
@@ -125,7 +125,7 @@ public class GestionPolizaON {
 	}
 
 	/**
-	 * Método que permite listar las solicitudes de crédito.
+	 * Método que permite listar las solicitudes de poliza.
 	 * 
 	 * @return Un lista con clases SolicitudDePoliza con los datos de las
 	 *         solicitudes de Poliza;
@@ -295,7 +295,7 @@ public class GestionPolizaON {
 	 * 
 	 * @param solicitudDePoliza Una clase solicitudDePoliza con los datos de la
 	 *                          solicitud de Poliza.
-	 * @return Un mensaje indicado el valor del saldo de crédito en rangos.
+	 * @return Un mensaje indicado el valor del saldo de poliza en rangos.
 	 */
 	public Double saldoCuenta(SolicitudDePoliza solicitudDePoliza) {
 		CuentaDeAhorro cuentaDeAhorro = cuentaDAO
@@ -309,8 +309,8 @@ public class GestionPolizaON {
 	}
 
 	/**
-	 * Metodo que permite crear la tabla de amortización de un crédito aprobado que
-	 * se convertiran en los detalles de un crédito.
+	 * Metodo que permite crear la tabla de amortización de un poliza aprobado que
+	 * se convertiran en los detalles de un poliza.
 	 * 
 	 * @param cuotas  El numero de meses que el cliente indica cuando solicita un
 	 *                Poliza.
@@ -349,7 +349,7 @@ public class GestionPolizaON {
 
 	/**
 	 * Metodo que permite indicar los datos para enviar mediante el correo el
-	 * rechazo de la solicitud de crédito.
+	 * rechazo de la solicitud de poliza.
 	 * 
 	 * @param cliente Una clase Cliente con los datos del cliente.
 	 * @param razon   La descripción del rechazo de la solictud de Poliza.
@@ -383,7 +383,7 @@ public class GestionPolizaON {
 
 	/**
 	 * Metodo que permite indicar los datos para enviar mediante el correo de la
-	 * aprobación de crédito.
+	 * aprobación de poliza.
 	 * 
 	 * @param poliza  Una clase Poliza con los datos del Poliza.
 	 * @param cliente Una clase Cliente con los datos del cliente.
@@ -430,7 +430,7 @@ public class GestionPolizaON {
 	 * en base a su número de cédula.
 	 * 
 	 * 
-	 * @return Una lista con clases Poliza con los datos de los créditos aprobados
+	 * @return Una lista con clases Poliza con los datos de los polizas aprobados
 	 *         del cliente en cuestión.
 	 */
 

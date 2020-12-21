@@ -34,7 +34,7 @@ import integrador.sistemaBanco.model.Poliza;
  *
  */
 @Stateless
-public class GestionCuentaON {
+public class GestionCuentaON implements GestionCuentaONLocal{
 
 	@Inject
 	private CuentaDeAhorroDAO cuentaDeAhorroDAO;

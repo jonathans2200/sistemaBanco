@@ -26,13 +26,11 @@ import integrador.sistemaBanco.utils.Respuesta;
 
 
 @Stateless
-public class GestionTransaccionesON {
+public class GestionTransaccionesON  implements GestionTransaccionesONLocal{
 	@Inject
 	private TransaccionDAO transaccionDAO;
 	@Inject
 	private TransferenciaLocalDAO transferenciaLocalDAO;
-	@Inject
-	private TransferenciaExternaDAO transferenciaExternaDAO;
 	@Inject
 	private CuentaDeAhorroDAO cuentaDeAhorroDAO;
 

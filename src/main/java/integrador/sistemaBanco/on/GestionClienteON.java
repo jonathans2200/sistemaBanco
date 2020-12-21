@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
+import integrador.sistemaBanco.on.GestionClienteONLocal;
 import integrador.sistemaBanco.dao.ClienteDAO;
 import integrador.sistemaBanco.model.Cliente;
 /**
@@ -13,7 +13,7 @@ import integrador.sistemaBanco.model.Cliente;
  *
  */
 @Stateless
-public class GestionClienteON {
+public class GestionClienteON implements GestionClienteONLocal  {
 	@Inject
 	private ClienteDAO clienteDAO;
 
@@ -134,5 +134,9 @@ public class GestionClienteON {
 		}
 		return cedulaCorrecta;
 	}
+
+
+
+	
 
 }
