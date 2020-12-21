@@ -16,6 +16,9 @@ import integrador.sistemaBanco.model.Empleado;
 @RequestScoped
 public class VerificarSesionBean implements Serializable {
 
+	/**
+	 * metodo para verificar la sesion del cliente
+	 */
 	public void verificarSession() {
 		try {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -30,6 +33,11 @@ public class VerificarSesionBean implements Serializable {
 		}
 
 	}
+
+
+	/**
+	 * metodo para verificar la sesion de los empleados
+	 */
 
 	public void verificarSessionAdmin(){
 	        try {

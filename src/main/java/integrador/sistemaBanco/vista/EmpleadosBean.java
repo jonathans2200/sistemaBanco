@@ -35,7 +35,7 @@ import integrador.sistemaBanco.on.GestionEmpleadoON;
  * Clase de tipo Bean para el manejo de JSF y archivos xhtml
  * 
  * @author jonathan
- * @version: 1.0
+ * 
  */
 @Named
 @RequestScoped

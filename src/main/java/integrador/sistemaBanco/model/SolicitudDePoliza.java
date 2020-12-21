@@ -35,7 +35,7 @@ public class SolicitudDePoliza {
 	private String historialPoliza; 
 	private String saldoCuenta;  
 	private double tasaPago;  
-	private int añosCliente; 
+	private int anosCliente; 
 	private double totalPoliza;
 	private String activo; 
 	private int cantidadPolizas; 
@@ -118,12 +118,15 @@ public class SolicitudDePoliza {
 	public void setTasaPago(double tasaPago) {
 		this.tasaPago = tasaPago;
 	}
-	public int getAñosCliente() {
-		return añosCliente;
+	
+	public int getAnosCliente() {
+		return anosCliente;
 	}
-	public void setAñosCliente(int añosCliente) {
-		this.añosCliente = añosCliente;
+
+	public void setAnosCliente(int anosCliente) {
+		this.anosCliente = anosCliente;
 	}
+
 	public int getCantidadPolizas() {
 		return cantidadPolizas;
 	}
@@ -142,7 +145,7 @@ public class SolicitudDePoliza {
 				+ ", montoPoliza=" + montoPoliza + ", mesesPoliza=" + mesesPoliza + ", estadoPoliza="
 				+ estadoPoliza + ", arCedula=" + Arrays.toString(arCedula) + ", arPlanillaServicios="
 				+ Arrays.toString(arPlanillaServicios) + ", historialPoliza=" + historialPoliza + ", saldoCuenta="
-				+ saldoCuenta + ", tasaPago=" + tasaPago + ", añosCliente=" + añosCliente + ", cantidadPolizas="
+				+ saldoCuenta + ", tasaPago=" + tasaPago + ", añosCliente=" + anosCliente + ", cantidadPolizas="
 				+ cantidadPolizas + ", tipoCliente=" + tipoCliente + "]";
 	}
 	

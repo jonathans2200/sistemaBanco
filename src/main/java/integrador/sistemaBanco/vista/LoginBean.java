@@ -32,7 +32,7 @@ import integrador.sistemaBanco.on.GestionEmpleadoON;
  * Clase de tipo Bean para el manejo de JSF y archivos xhtml
  * 
  * @author jonat
- * @version: 1.0
+ * s
  */
 @Named
 @SessionScoped
@@ -116,7 +116,7 @@ public class LoginBean implements Serializable{
 	
 	/**
 	 * Metodo para obtener solicitudes
-	 * @return Una lista de solicitudes de Credito
+	 * @return Una lista de solicitudes de poliza
 	 */
 
 	
@@ -153,17 +153,17 @@ public class LoginBean implements Serializable{
 	}
 	
 	/**
-	 * Metodo para obtener el motivo de credito
-	 * @return El motivo de rechazo del credito
+	 * Metodo para obtener el motivo de poliza
+	 * @return El motivo de rechazo del poliza
 	 */
 	public String getMotivo() {
 		return motivo;
 	}
 	
 	/**
-	 * Asignar el motivo del credito
+	 * Asignar el motivo del poliza
 	 * @param motivo El parametro motivo me permite asignar
-	 * el motivo del credito
+	 * el motivo del poliza
 	 */
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
@@ -171,7 +171,7 @@ public class LoginBean implements Serializable{
 	
 	/**
 	 * Metodo para obtener el empleado
-	 * @return
+	 * @return un empleado
 	 */
 	public Empleado getEmpleado() {
 		return empleado;
@@ -255,7 +255,7 @@ public class LoginBean implements Serializable{
 	
 	/**
 	 * Metodo para obtener solicitudes en estado Solicitando
-	 * @return
+	 * 
 	 */
 	
 	

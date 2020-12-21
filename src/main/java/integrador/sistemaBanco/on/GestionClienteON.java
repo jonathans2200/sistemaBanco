@@ -35,15 +35,15 @@ public class GestionClienteON {
 	}
 
 	/**
-	 * Metodo que permite la busqueda del cliente en base a su usuario y contraseña
+	 * Metodo que permite la busqueda del cliente en base a su usuario y contrasena
 	 * 
 	 * @param usuario    Usuario del cliente
-	 * @param contraseña Contraseña del cliente
+	 * @param contrasena contrasena del cliente
 	 * @return Cliente obtenido de la busqueda
 	 */
-	public Cliente buscarClienteUsuarioContraseña(String usuario, String contraseña) {
+	public Cliente buscarClienteUsuariocontrasena(String usuario, String contrasena) {
 		try {
-			return clienteDAO.obtenerClienteUsuarioContraseña(usuario, contraseña);
+			return clienteDAO.obtenerClienteUsuariocontrasena(usuario, contrasena);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

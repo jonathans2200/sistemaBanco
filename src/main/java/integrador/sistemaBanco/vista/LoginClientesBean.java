@@ -33,7 +33,7 @@ public class LoginClientesBean implements Serializable{
 
 	private Cliente cliente;
 	private String usuario;
-	private String contraseña;
+	private String contrasena;
 
 	/**
 	 * Metodo que permite inicializar atributos y metodos al momento que se llama a
@@ -97,21 +97,21 @@ public class LoginClientesBean implements Serializable{
 	}
 
 	/**
-	 * Metodo que permite obtener el atributo contraseña
+	 * Metodo que permite obtener el atributo contrasena
 	 * 
-	 * @return Atributo contraseña de la clase
+	 * @return Atributo contrasena de la clase
 	 */
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
 	/**
-	 * Metodo que permite asignar un valor al atributo contraseña
+	 * Metodo que permite asignar un valor al atributo contrasena
 	 * 
-	 * @param contraseña Variable asignada al atributo contraseña de la clase
+	 * @param contrasena Variable asignada al atributo contrasena de la clase
 	 */
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class LoginClientesBean implements Serializable{
 		System.out.println("--------------PASO POR LA LISTA-----------");
 		for (Cliente c : lstClis) {
 			System.out.println("------ENTRA EN EL FOR------------");
-			if (c.getUsuario().equalsIgnoreCase(usuario) && c.getClave().equalsIgnoreCase(contraseña)) {
+			if (c.getUsuario().equalsIgnoreCase(usuario) && c.getClave().equalsIgnoreCase(contrasena)) {
 				System.out.println("-----ENTRO EN EL IF CORRECTO----------");
 				SesionCliente sesionCliente = new SesionCliente();
 				sesionCliente.setCliente(c);
@@ -151,6 +151,10 @@ public class LoginClientesBean implements Serializable{
 		return "InicioClientes";
 	}
 
+	/**
+	 * metodo  para finalizar la sesion he ir al login
+	 * @return
+	 */
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "InicioClientes?faces-redirect=true";

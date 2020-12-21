@@ -15,7 +15,7 @@ import integrador.sistemaBanco.model.Transaccion;
  * Clase que me permite manejar la Entidad Transaccion con la Base de Datos
  * Es para el manejo de los datos registrados en la Base de datos con respecto a la Entidad Trnasaccion
  * @author jonat
- * @version: 1.0
+ * 
  */
 
 @Stateless

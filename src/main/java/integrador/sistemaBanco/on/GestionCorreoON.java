@@ -61,10 +61,7 @@ public class GestionCorreoON {
 	 * @param cuerpo El cuerpo del correo electronico.
 	 * @param Poliza Una clase Poliza que se envia en un metodo para generar la tabla 
 	 * 					de amortización en un documento pdf y guardar en un archivo.
-	 * @throws AddressException La excepción que se lanza cuando se encuentra una dirección con formato incorrecto.
-	 * @throws IOException Señala que se ha producido una excepción de E / S de algún tipo. Esta clase es la clase 
-							general de excepciones producidas por operaciones de E / S fallidas o interrumpidas.
-	 * @throws MessagingException La clase base para todas las excepciones lanzadas por las clases de mensajería.
+	 *
 	 */
 	public void enviarCorreo2(String destinatario, String asunto, String cuerpo, Poliza Poliza) {
 		Properties propiedad = new Properties();

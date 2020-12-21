@@ -72,7 +72,7 @@ public class GestionTransaccionesON {
 	 * @param fechaF La fecha de fin hasta donde se quieren ver las transacciones.
 	 * @return Una lista de las transacciones/movimientos del usuario entre las
 	 *         fechas indicadas.
-	 * @throws Exception Excepción por si el cliente no tiene transacciones.
+	 * Exception Excepción por si el cliente no tiene transacciones.
 	 */
 	public List<Transaccion> obtenerTransaccionesFechaHora(String cedula, String fechaI, String fechaF) {
 		String fechaInicio = fechaI + " 00:00:00.000000";
@@ -96,7 +96,7 @@ public class GestionTransaccionesON {
 	 *                        retiro;
 	 * @return Un mensaje indicado si se completo correctamente el proceso o algo
 	 *         error que pueda ocurrir.
-	 * @throws Exception Excepción por si sucede algún error.
+	 *  Exception Excepción por si sucede algún error.
 	 */
 
 	public String realizarTransaccion(String cuenta, double monto, String tipoTransaccion) {
@@ -156,7 +156,7 @@ public class GestionTransaccionesON {
 	 * @param monto         El valor de la transferencia.
 	 * @return Un clase Respuesta indicando los datos del desarrollo del proceso,
 	 *         con un codigo, una descripción.
-	 * @throws Exception Excepción por si sucede algún error en el proceso.
+	 * Exception Excepción por si sucede algún error en el proceso.
 	 */
 	public Respuesta realizarTransferencia(String cedula, String cuentaAhorro2, double monto) {
 		Respuesta respuesta = new Respuesta();

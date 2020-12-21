@@ -57,13 +57,13 @@ public class GestionPolizaON {
 	 * 
 	 * @param solicituDePoliza Una clase SolicitudDePoliza para realizar el proceso
 	 *                         de guardado.
-	 * @throws ForbiddenException   Una excepción de tiempo de ejecución que indica
+	 * ForbiddenException   Una excepción de tiempo de ejecución que indica
 	 *                              que el servidor ha prohibido el acceso a un
 	 *                              recurso solicitado por un cliente.
-	 * @throws InterruptedException Se lanza cuando un hilo está esperando,
+	 * InterruptedException Se lanza cuando un hilo está esperando,
 	 *                              durmiendo u ocupado de otra manera, y el hilo se
 	 *                              interrumpe, ya sea antes o durante la actividad.
-	 * @throws ExecutionException   Se lanza una excepción al intentar recuperar el
+	 *  ExecutionException   Se lanza una excepción al intentar recuperar el
 	 *                              resultado de una tarea que se canceló al lanzar
 	 *                              una excepción
 	 */
@@ -71,15 +71,15 @@ public class GestionPolizaON {
 	public void guardarSolicitudPoliza(SolicitudDePoliza solicituDePoliza) {
 		solicituDePoliza.setHistorialPoliza(solicituDePoliza.getHistorialPoliza());
 		solicituDePoliza.setSaldoCuenta(String.valueOf(saldoCuenta(solicituDePoliza)));
-		solicituDePoliza.setAñosCliente(obtenerEdad(solicituDePoliza.getClientePoliza().getFechaNacimiento()));
+		solicituDePoliza.setAnosCliente(obtenerEdad(solicituDePoliza.getClientePoliza().getFechaNacimiento()));
 		solicituDePoliza.setCantidadPolizas(numeroPolizas(solicituDePoliza));
 
 		String poliza = "{\"POLIZA \":\"" + solicituDePoliza.getClientePoliza().getCedula() + ";"
 				+ String.valueOf(solicituDePoliza.getMesesPoliza()) + ";" + solicituDePoliza.getHistorialPoliza() + ";"
 				+ String.valueOf(solicituDePoliza.getMontoPoliza()) + ";" + solicituDePoliza.getSaldoCuenta() + ";"
 				+ String.valueOf(solicituDePoliza.getTasaPago()) + ";" + (solicituDePoliza.getActivo()) + ";"
-				+ String.valueOf(solicituDePoliza.getAñosCliente()) + ";"
-				+ String.valueOf(solicituDePoliza.getCantidadPolizas()) + ";0\"}";
+				+ String.valueOf(solicituDePoliza.getAnosCliente()) + ";"
+				+ String.valueOf(solicituDePoliza.getCantidadPolizas()) + ";\"}";
 		try {
 			solicitudDePolizaDAO.insert(solicituDePoliza);
 
@@ -96,7 +96,7 @@ public class GestionPolizaON {
 	/**
 	 * Método que permite actualizar un crédito;
 	 * 
-	 * @param Poliza Una clase Poliza para realizar el proceso de actualización.
+	 * @param poliza Una clase Poliza para realizar el proceso de actualizacion.
 	 */
 
 	public void actualizarPoliza(Poliza poliza) {
@@ -349,7 +349,7 @@ public class GestionPolizaON {
 	 * 
 	 * @param cliente Una clase Cliente con los datos del cliente.
 	 * @param razon   La descripción del rechazo de la solictud de Poliza.
-	 * @throws Exception Excepción por si sucede algún error en el proceso de envio.
+	 *  Exception Excepción por si sucede algún error en el proceso de envio.
 	 */
 	public void rechazarPoliza(Cliente cliente, String razon) {
 		String destinatario = cliente.getCorreo();
@@ -381,9 +381,9 @@ public class GestionPolizaON {
 	 * Metodo que permite indicar los datos para enviar mediante el correo de la
 	 * aprobación de crédito.
 	 * 
-	 * @param Poliza  Una clase Poliza con los datos del Poliza.
+	 * @param poliza  Una clase Poliza con los datos del Poliza.
 	 * @param cliente Una clase Cliente con los datos del cliente.
-	 * @throws Exception Excepción por si sucede algún error en el proceso de envio.
+	 *  Exception Excepción por si sucede algún error en el proceso de envio.
 	 */
 	public void aprobarPoliza(Poliza poliza, Cliente cliente) {
 		String destinatario = cliente.getCorreo();
@@ -425,7 +425,7 @@ public class GestionPolizaON {
 	 * Método que permite obtener los Polizas aprovados para un cliente específico
 	 * en base a su número de cédula.
 	 * 
-	 * @param cedula El numero de cédula del cliente.
+	 * 
 	 * @return Una lista con clases Poliza con los datos de los créditos aprobados
 	 *         del cliente en cuestión.
 	 */

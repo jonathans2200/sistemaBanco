@@ -92,11 +92,11 @@ public class GestionCuentaON {
 	}
 
 	/**
-	 * Metodo que permite la creacion de una contraseña aleatoria
+	 * Metodo que permite la creacion de una contrasena aleatoria
 	 * 
-	 * @return Contraseña aleatoria
+	 * @return contrasena aleatoria
 	 */
-	public String getContraseña() {
+	public String getcontrasena() {
 		String simbolos = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefjhijklmnopqrstuvwxyz0123456789";
 
 		int tam = simbolos.length() - 1;
@@ -120,9 +120,9 @@ public class GestionCuentaON {
 		if (cliente == null) {
 			Cliente cli = c.getCliente();
 			String usuario = getUsuario(cli.getCedula(), cli.getNombre(), cli.getApellido());
-			String contraseña = getContraseña();
+			String contrasena = getcontrasena();
 			cli.setUsuario(usuario);
-			cli.setClave(contraseña);
+			cli.setClave(contrasena);
 			c.setCliente(cli);
 			String destinatario = cli.getCorreo(); // A quien le quieres escribir.
 
@@ -135,7 +135,7 @@ public class GestionCuentaON {
 					+ "BANCONET le informa que el usuario ha sido habilitado exitosamente.    \n"
 					+ "                                                                              \n"
 					+ "                       Su usuario es : " + usuario + "                          \n"
-					+ "                   	Su clave de acceso es:   " + contraseña + "               \n"
+					+ "                   	Su clave de acceso es:   " + contrasena + "               \n"
 					+ "                       Fecha: " + fecha() + "                                     \n"
 					+ "                                                                              \n"
 					+ "------------------------------------------------------------------------------\n";

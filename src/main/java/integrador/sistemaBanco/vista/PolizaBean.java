@@ -137,11 +137,11 @@ public class PolizaBean implements Serializable {
 		return null;
 	}
 	/**
-	 * Metodo que permite indicar los datos para enviar mediante el correo de la aprobación de crédito.
+	 * Metodo que permite indicar los datos para enviar mediante el correo de la aprobación de la poliza
 	 * 
 	 * @param Poliza Una clase Poliza con los datos del Poliza.
 	 * @param cliente Una clase Cliente con los datos del cliente.
-	 * @throws Exception Excepción por si sucede algún error en el proceso de envio.
+	 *  Exception Excepción por si sucede algún error en el proceso de envio.
 	 */
 	public void aprobarPoliza(Poliza Poliza, Cliente cliente) {
 		String destinatario = cliente.getCorreo();
@@ -289,14 +289,14 @@ public class PolizaBean implements Serializable {
 
 		}
 
-		// Inform JSF that it doesn't need to handle response.
-		// This is very important, otherwise you will get the following exception in the
-		// logs:
-		// java.lang.IllegalStateException: Cannot forward after response has been
-		// committed.
 		facesContext.responseComplete();
 	}
 
+	/**
+	 * metodo para ver el archivo de la cedula o de la plantilla
+	 * @param tipo
+	 * @throws IOException
+	 */
 	public void ver2(String tipo) throws IOException {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
