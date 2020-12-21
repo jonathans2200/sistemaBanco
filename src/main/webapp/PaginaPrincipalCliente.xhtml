@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="cedula" value="#{clientesBean.cedulaParametro}"></f:viewParam>
+	</f:metadata>
+</h:head>
+<h:body>
+	<ui:composition template="template/templateCliente2.xhtml">
+		<ui:define name="title"> Resumen Cuenta </ui:define>
+		<ui:param name="ced" value="#{clientesBean.cedulaParametro}" />
+		<ui:param name="nombre"
+			value="#{clientesBean.buscarCuentaDeAhorro.cliente.nombre}" />
+		<ui:define name="content">
+			<h:form>
+				<div class="panel-body">
+					<h1 class="page-header">Cuenta de Ahorros</h1>
+					<div class="table-responsive">
+						<h:dataTable value="#{clientesBean.buscarCuentaDeAhorro}"
+							var="cuenta"
+							class="table table-bordered table-hover table-striped">
+							<h:column>
+								<f:facet name="header">Numero De Cuenta</f:facet>
+								#{cuenta.numeroCuentaDeAhorro}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Tipo de Cuenta</f:facet>
+								#{cuenta.tipoCuenta}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Fecha Ultima Transaccion</f:facet>  
+								#{clientesBean.obtenerFecha(clientesBean.transaccion.fecha)}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Saldo</f:facet>
+								#{cuenta.saldoCuentaDeAhorro}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Consultar Movimientos</f:facet>
+								<h:commandButton
+									action="#{clientesBean.consultarTransacciones()}"
+									value="Consultar" class="btn btn-success" />
+							</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</h:form>
+
+			<h:panelGroup id="Detalles">
+				<h:form>
+					<h2>DETALLE DE POLIZA</h2>
+					<h:dataTable value="" var="tra"
+						class="table table-bordered table-hover table-striped">
+						<h:column>
+							<f:facet name="header">Codigo de Poliza</f:facet>
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">Dias Plazo</f:facet>
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">fecha captacion</f:facet>
+
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">fecha Vencimiento</f:facet>
+
+						</h:column>
+						<h:column>
+							<f:facet name="header">Capital</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Interez</f:facet>
+						</h:column>
+
+					</h:dataTable>
+
+				</h:form>
+			</h:panelGroup>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
