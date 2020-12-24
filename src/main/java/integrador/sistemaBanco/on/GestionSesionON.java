@@ -118,7 +118,6 @@ public class GestionSesionON implements GestionSesionONLocal {
 	 * @param codigoSesionCliente Codigo de la sesion que se desea buscar
 	 * @return Sesion obtenida de la busqueda
 	 */
-
 	public SesionCliente buscarSesionCliente(int codigoSesionCliente) {
 		return sesionClienteDAO.read(codigoSesionCliente);
 	}

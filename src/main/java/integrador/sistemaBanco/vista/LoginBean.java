@@ -233,7 +233,7 @@ public class LoginBean  implements Serializable{
 				try {
 					FacesContext contex = FacesContext.getCurrentInstance();
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empleado", emp);
-					contex.getExternalContext().redirect("PaginaJefeCredito.xhtml");
+					contex.getExternalContext().redirect("PaginaJefePoliza.xhtml");
 				} catch (Exception e) {
 				}
 			} else if (emp != null && emp.getRol().equalsIgnoreCase("Admin")) {
