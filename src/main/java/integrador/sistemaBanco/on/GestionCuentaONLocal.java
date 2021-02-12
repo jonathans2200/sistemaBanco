@@ -3,6 +3,7 @@ package integrador.sistemaBanco.on;
 import javax.ejb.Local;
 
 import integrador.sistemaBanco.model.CuentaDeAhorro;
+import integrador.sistemaBanco.utils.Respuesta;
 @Local
 public interface GestionCuentaONLocal {
 	public String generarNumeroDeCuenta();
@@ -20,6 +21,6 @@ public interface GestionCuentaONLocal {
 	public void eliminarCuentaDeAhorro(String numeroCuentaDeAhorro);
 
 	public void actualizarCuentaDeAhorro(CuentaDeAhorro cuentaDeAhorro);
-
+	public Respuesta obtenerClienteCuentaAhorro(String numeroCuenta);
 	
 }

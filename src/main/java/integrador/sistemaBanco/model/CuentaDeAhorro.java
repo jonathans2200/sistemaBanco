@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
  * @author jonat
  */
 @Entity
+
 public class CuentaDeAhorro implements Serializable {
 	//Atributos de la clase
 	@Id

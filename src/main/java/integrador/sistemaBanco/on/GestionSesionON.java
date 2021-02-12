@@ -2,6 +2,7 @@ package integrador.sistemaBanco.on;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -12,7 +13,10 @@ import javax.naming.InterruptedNamingException;
 
 import integrador.sistemaBanco.dao.SesionClienteDAO;
 import integrador.sistemaBanco.model.Cliente;
+import integrador.sistemaBanco.model.CuentaDeAhorro;
+import integrador.sistemaBanco.model.Poliza;
 import integrador.sistemaBanco.model.SesionCliente;
+import integrador.sistemaBanco.utils.Respuesta;
 
 /**
  * clase donde tendremos nuestro objeto de negocios para la gestion de sesiones
@@ -148,4 +152,7 @@ public class GestionSesionON implements GestionSesionONLocal {
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		return hourdateFormat.format(fecha);
 	}
+
+	
+
 }

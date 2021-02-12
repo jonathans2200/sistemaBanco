@@ -16,6 +16,8 @@ import integrador.sistemaBanco.dao.TransferenciaLocalDAO;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.Transaccion;
 import integrador.sistemaBanco.model.TransfereciaLocal;
+import integrador.sistemaBanco.model.TransferenciaExterna;
+import integrador.sistemaBanco.servicios.RespuestaTransferenciaExterna;
 import integrador.sistemaBanco.utils.Respuesta;
 
 /**
@@ -33,6 +35,8 @@ public class GestionTransaccionesON  implements GestionTransaccionesONLocal{
 	private TransferenciaLocalDAO transferenciaLocalDAO;
 	@Inject
 	private CuentaDeAhorroDAO cuentaDeAhorroDAO;
+	@Inject 
+	private TransferenciaExternaDAO externaDao;
 
 	/**
 	 * Metodo para obtener una Lista de Transacciones
@@ -223,5 +227,39 @@ public class GestionTransaccionesON  implements GestionTransaccionesONLocal{
 		client.close();
 		return res;
 	}
+	/**
+	 * Método que permite realizar una transferencia externa en la aplicación móvil mediante un servicio web.
+	 * 
+	 * @param transferenciaExterna Una clase TransferenciaExterna que se envia en formato json  mediante el servicio web.
+	 * @return Un clase RespuestaTransferenciaExterna indicando los datos del desarrollo del proceso, con un codigo, una descripción.
+	 * @throws Exception Excepción por si sucede algún error en el proceso.
+	 */
+	public RespuestaTransferenciaExterna realizarTransferenciaExterna(TransferenciaExterna transferenciaExterna) {  
+		RespuestaTransferenciaExterna respuestaTransferenciaExterna = new RespuestaTransferenciaExterna();
+		try {  
+			CuentaDeAhorro cuentaDeAhorro = cuentaDeAhorroDAO.read(transferenciaExterna.getCuentaPersonaLocal()); 
+			if(cuentaDeAhorro!=null) { 
+				if(cuentaDeAhorro.getSaldoCuentaDeAhorro()>=transferenciaExterna.getMontoTransferencia()) { 
+					transferenciaExterna.setFechaTransaccion(new Date());
+					externaDao.insert(transferenciaExterna);  
+					cuentaDeAhorro.setSaldoCuentaDeAhorro(cuentaDeAhorro.getSaldoCuentaDeAhorro()-transferenciaExterna.getMontoTransferencia()); 
+					cuentaDeAhorroDAO.update(cuentaDeAhorro);
+					respuestaTransferenciaExterna.setCodigo(1); 
+					respuestaTransferenciaExterna.setDescripcion("Transferencia se ha realizado exitosamente"); 
+				}else { 
+					respuestaTransferenciaExterna.setCodigo(2);
+					respuestaTransferenciaExterna.setDescripcion("No tiene esa cantidad en su cuenta");
+				}
+			}else { 
+				respuestaTransferenciaExterna.setCodigo(3); 
+				respuestaTransferenciaExterna.setDescripcion("La cuenta no existe");
+			}
+		}catch (Exception e) {
+			respuestaTransferenciaExterna.setCodigo(4); 
+			respuestaTransferenciaExterna.setDescripcion("Error : " + e.getMessage());
+		}
+		return respuestaTransferenciaExterna;
+	}
+
 	
 }

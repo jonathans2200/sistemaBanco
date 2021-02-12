@@ -27,6 +27,7 @@ import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.DetallePoliza;
 import integrador.sistemaBanco.model.Poliza;
+import integrador.sistemaBanco.utils.Respuesta;
 /**
  * /**
  * clase donde tendremos nuestro objeto de negocios para la gestion de Cuentas
@@ -205,6 +206,30 @@ public class GestionCuentaON implements GestionCuentaONLocal{
 		return hourdateFormat.format(date);
 	}
 
-	
+	/**
+	 * Metodo que permite obtener un cliente para el proceso de transacciones o transferencias.
+	 * 
+	 * @param numeroCuenta El numero de cuenta de la persona a la que se hace la transaccion o transferencia.
+	 * @return Un clase Respuesta indicando los datos del desarrollo del proceso, con un codigo, una descripción.
+	 * @throws Exception Excepción por si sucede algún error en el proceso.
+	 */
+	public Respuesta obtenerClienteCuentaAhorro(String numeroCuenta) {
+		Respuesta respuesta = new Respuesta();
+		CuentaDeAhorro cuentaDeAhorro = cuentaDeAhorroDAO.read(numeroCuenta); 
+		try {
+			if(cuentaDeAhorro!=null) {
+				 respuesta.setCodigo(1); 
+				 respuesta.setDescripcion("Se ha obtenido la cuenta exitosamente"); 
+				 respuesta.setCuentaDeAhorro(cuentaDeAhorro);
+			}else{ 
+				respuesta.setCodigo(2); 
+				respuesta.setDescripcion("La Cuenta de Ahorro no existe");
+			}
+		} catch (Exception e) {
+			respuesta.setCodigo(3); 
+			respuesta.setDescripcion("Error "+e.getMessage());
+		}
+		return respuesta;
+	}
 
 }

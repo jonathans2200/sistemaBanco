@@ -75,13 +75,13 @@
 										<div class="col-lg-6">
 											<label>TAZA DE INTERES</label>
 											<div class="form-group input-group">
-												<h:inputText id="in" value=""
+												<h:inputText id="in" value="#{clientesBean.solicitudDePoliza.tasaPago}"
 													type="text" class="form-control form-control-line">
 												</h:inputText>
 											</div>
 											<label>TOTAL A RECIBIR</label>
 											<div class="form-group input-group">
-												<h:inputText id="eg" value=""
+												<h:inputText id="eg" value="#{clientesBean.solicitudDePoliza.totalPoliza}"
 													type="text" class="form-control form-control-line">
 													<f:ajax event="keyup" render="mensT" execute="in eg" />
 												</h:inputText>

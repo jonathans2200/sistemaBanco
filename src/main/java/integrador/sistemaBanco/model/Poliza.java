@@ -62,11 +62,11 @@ public class Poliza implements Serializable {
 		this.detalles = detalles;
 	}
 
-	public int getCodigoCre() {
+	public int getCodigoPoliza() {
 		return codigoCre;
 	}
 
-	public void setCodigoCre(int codigoCre) {
+	public void setCodigoPoliza(int codigoCre) {
 		this.codigoCre = codigoCre;
 	}
 

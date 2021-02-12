@@ -1,12 +1,22 @@
 package integrador.sistemaBanco.on;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import integrador.sistemaBanco.on.GestionClienteONLocal;
+import integrador.sistemaBanco.servicios.PolizaRespuesta;
+import integrador.sistemaBanco.utils.Respuesta;
 import integrador.sistemaBanco.dao.ClienteDAO;
+import integrador.sistemaBanco.dao.CuentaDeAhorroDAO;
 import integrador.sistemaBanco.model.Cliente;
+import integrador.sistemaBanco.model.CuentaDeAhorro;
+import integrador.sistemaBanco.model.Poliza;
 /**
  * clase donde tendremos nuestro objeto de negocios para la gestion de Cliente
  * @author jonat
@@ -16,6 +26,12 @@ import integrador.sistemaBanco.model.Cliente;
 public class GestionClienteON implements GestionClienteONLocal  {
 	@Inject
 	private ClienteDAO clienteDAO;
+	
+	@Inject 
+	private GestionPolizaONLocal on;
+	
+	@Inject
+	private CuentaDeAhorroDAO ahorrosDAO;
 
 	/**
 	 * Metodo que me permite guardar el cliente en la base de datos
@@ -136,7 +152,123 @@ public class GestionClienteON implements GestionClienteONLocal  {
 	}
 
 
+	/**
+	 * Metodo que permite dar acceso al cliente en la aplicación móvil mediante un servicio web.
+	 * 
+	 * @param username El nombre de usuario del cliente que se envio en el correo.
+	 * @param password La contraseña del cliente que se envio en el correo de creación de la cuenta.
+	 * @return Un clase Respuesta indicando los datos del desarrollo del proceso, con un codigo, una descripción.
+	 * @throws Exception Excepción por si sucede algún error en el proceso.
+	 */
+	public Respuesta loginServicio(String username, String password) {
+		Cliente cliente = new Cliente();
+		Respuesta respuesta = new Respuesta();
+		CuentaDeAhorro cuentaDeAhorro = new CuentaDeAhorro();
+		List<Poliza> lstCreditos = new ArrayList<Poliza>();
+		try {
+			cliente = clienteDAO.obtenerClienteUsuariocontrasena(username, password);
+			if (cliente != null) {
+				respuesta.setCodigo(1);
+				respuesta.setDescripcion("Ha ingresado exitosamente");
+				respuesta.setCliente(cliente);
+				cuentaDeAhorro = ahorrosDAO.getCuentaCedulaCliente(cliente.getCedula());
+				respuesta.setCuentaDeAhorro(cuentaDeAhorro);
+				lstCreditos = on.polizasAprovados(cliente.getCedula());
+				List<PolizaRespuesta> lstNuevaCreditos = new ArrayList<PolizaRespuesta>();
+				for (Poliza credito : lstCreditos) {
+					PolizaRespuesta creditoRespuesta = new PolizaRespuesta();
+					creditoRespuesta.setCodigoPoliza(credito.getCodigoPoliza());
+					creditoRespuesta.setEstado(credito.getEstado());
+					creditoRespuesta.setMonto(credito.getMonto());
+					creditoRespuesta.setInteres(credito.getInteres());
+					creditoRespuesta.setFechaRegistro(credito.getFechaRegistro());
+					creditoRespuesta.setFechaVencimiento(credito.getFechaVencimiento());
+					creditoRespuesta.setDetalles(credito.getDetalles());
+					lstNuevaCreditos.add(creditoRespuesta);
+				}
+				respuesta.setListaPoliza(lstNuevaCreditos);
+			}
+		} catch (Exception e) {
+			respuesta.setCodigo(2);
+			respuesta.setDescripcion("Error " + e.getMessage());
+		}
+		return respuesta;
+	}
+	
 
 	
+	
+	
+	/**
+	 * Metodo que permite indicar los datos para enviar mediante el correo el mensaje de cambio de contraseña.
+	 * 
+	 * @param cliente Una clase Cliente con los datos del cliente.
+	 * @throws Exception Excepción por si sucede algún error en el proceso de envio.
+	 */
+	public void cambiarContrasena(Cliente cliente) {
+		String destinatario = cliente.getCorreo();
+		String asunto = "CAMBIO DE CONTRASEÑA";
+		String cuerpo = "BANCONET                                              SISTEMA BANCARIO\n"
+				+ "------------------------------------------------------------------------------\n"
+				+ "              Estimado(a): " + cliente.getNombre().toUpperCase() + "          "
+				+ cliente.getApellido().toUpperCase() + "\n"
+				+ "------------------------------------------------------------------------------\n"
+				+ "COOPERATIVA JAM le informa que su contraseña ha sido cambiada exitosamente.   \n"
+				+ "                                                                              \n"
+				+ "                   Su nueva contraseña es:   " + cliente.getClave() + "       \n"
+				+ "                       Fecha: " + fecha() + "                                 \n"
+				+ "                                                                              \n"
+				+ "------------------------------------------------------------------------------\n";
+		CompletableFuture.runAsync(() -> {
+			try {
+			GestionCorreoON correo=new GestionCorreoON();
+				correo.enviarCorreo(destinatario, asunto, cuerpo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+
+//			} 
+	}
+	
+	/**
+	 * Metodo que permite cambiar la contraseña del cliente en la aplicación móvil mediante un servicio web.
+	 * 
+	 * @param correo El correo del cliente que describio cuando creo una cuenta de ahorros.
+	 * @param contraAntigua La contraseña del cliente antigua.
+	 * @param contraActual La contraseña del cliente nueva.
+	 * @return Un clase Respuesta indicando los datos del desarrollo del proceso, con un codigo, una descripción.
+	 * @throws Exception Excepción por si sucede algún error en el proceso.
+	 */
+	
+	public Respuesta cambioContrasena(String correo, String contraAntigua, String contraActual) {
+		System.out.println(correo + "" + contraAntigua);
+		Cliente cliente = new Cliente();
+		Respuesta respuesta = new Respuesta();
+		try {
+			cliente = clienteDAO.obtenerClienteCorreocontrasena(correo, contraAntigua);
+			System.out.println(cliente.toString());
+			cliente.setClave(contraActual);
+			clienteDAO.update(cliente);
+			respuesta.setCodigo(1);
+			respuesta.setDescripcion("Se ha actualizado su contraseña exitosamente"); 
+			cambiarContrasena(cliente);
+		} catch (Exception e) {
+			respuesta.setCodigo(2);
+			respuesta.setDescripcion("Error " + e.getMessage());
+		}
+
+		return respuesta;
+	} 
+	/**
+	 * Metodo que permite cambiar el formato de la fecha
+	 * 
+	 * @return Fecha con nuevo formato
+	 */
+	public String fecha() {
+		Date date = new Date();
+		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		return hourdateFormat.format(date);
+	}
 
 }

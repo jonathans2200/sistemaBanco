@@ -480,6 +480,9 @@ public class PolizaBean implements Serializable {
  */
 	public Double obtenerInteres(int tiempo) {
 		
+
+			
+		
 		if(tiempo>=30 && tiempo <=59) {
 		return 5.50	;
 		}else 
@@ -498,6 +501,7 @@ public class PolizaBean implements Serializable {
 										if(tiempo>=360) {
 											return 8.50;
 											}
+	
 		return null;
 		
 		
@@ -505,17 +509,19 @@ public class PolizaBean implements Serializable {
 	
 	
 	/***
-	 * metodo que permite simular una poliza
+	 * metodo que permite obtener los datos del interes y el monto total de la poliza 
 	 * @param mes
 	 * @param monto
 	 */
 	public String tablaAmor(){
 		    interes= obtenerInteres(dias);
+		    this.setInteres(interes);
 		   total =((monto*interes)*dias)/100;
 		        System.out.println("monto inicial "+monto);
 		        System.out.println("interes es " + interes);
 		        System.out.println("valor total " + total);
-		      
+		        System.out.println("valoooooor"+this.getTotal());
+		      this.setTotal(total);
 		  return null;
 	}
 }
