@@ -232,11 +232,9 @@ public class PolizaBean implements Serializable {
 		List<SolicitudDePoliza> actual = new ArrayList<SolicitudDePoliza>();
 		List<SolicitudDePoliza> actual2 = new ArrayList<SolicitudDePoliza>();
 		for (SolicitudDePoliza sol : soli) {
-			if (sol.getTipoCliente().equals("1")) {
+			
 				actual.add(sol);
-			} else if (sol.getTipoCliente().equals("2")) {
-				actual2.add(sol);
-			}
+			
 		}
 
 		if (apr.equals("Ap")) {

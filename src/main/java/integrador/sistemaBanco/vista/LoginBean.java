@@ -22,10 +22,15 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletResponse;
 
 import integrador.sistemaBanco.dao.SolicitudDePolizasDAO;
+import integrador.sistemaBanco.model.CuentaDeAhorro;
+import integrador.sistemaBanco.model.DetallePoliza;
 import integrador.sistemaBanco.model.Empleado;
+import integrador.sistemaBanco.model.Poliza;
 import integrador.sistemaBanco.model.SolicitudDePoliza;
+import integrador.sistemaBanco.on.GestionCuentaONLocal;
 import integrador.sistemaBanco.on.GestionEmpleadoON;
 import integrador.sistemaBanco.on.GestionEmpleadoONLocal;
+import integrador.sistemaBanco.on.GestionPolizaONLocal;
 
 
 
@@ -41,10 +46,20 @@ public class LoginBean  implements Serializable{
 	
 	@Inject
 	private GestionEmpleadoONLocal empleadoON;
+	@Inject
+	private GestionPolizaONLocal onPoliza;
+	@Inject
+	private GestionCuentaONLocal cuentaON;
+	
+	
 	private String usuario;
 
 	private String contrasena;
+	private List<SolicitudDePoliza> solicitudes;
 
+	private SolicitudDePoliza solicitudDePoliza;
+
+	private SolicitudDePoliza solicitudDePolizaAux;
 
 	private boolean editable = false;
 
@@ -58,12 +73,20 @@ public class LoginBean  implements Serializable{
 
 	@PostConstruct
 	public void init() {
-	
+		solicitudes = new ArrayList<SolicitudDePoliza>();
+		loadDataSol();
 	
 		empleado = new Empleado();
 		
 	}
+	public GestionCuentaONLocal getCuentaON() {
+		return cuentaON;
+	}
 
+
+	public void setCuentaON(GestionCuentaONLocal cuentaON) {
+		this.cuentaON = cuentaON;
+	}
 
 	public GestionEmpleadoONLocal getEmpleadoON() {
 		return empleadoON;
@@ -231,9 +254,10 @@ public class LoginBean  implements Serializable{
 				}
 			} else if (emp != null && emp.getRol().equalsIgnoreCase("AsistenteCaptacion")) {
 				try {
+					loadDataSol();
 					FacesContext contex = FacesContext.getCurrentInstance();
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empleado", emp);
-					contex.getExternalContext().redirect("PaginaJefePoliza.xhtml");
+					contex.getExternalContext().redirect("PaginaJefeCredito.xhtml");
 				} catch (Exception e) {
 				}
 			} else if (emp != null && emp.getRol().equalsIgnoreCase("Admin")) {
@@ -289,4 +313,213 @@ public class LoginBean  implements Serializable{
 	        
 	    }
 	
+	   /**
+		 * Metodo para obtener solicitudes en estado Solicitando
+		 * @return
+		 */
+		public List<SolicitudDePoliza> loTTT() {
+			System.out.println("ENTRAAAAAAAA EN LOADDATASOL");
+			// solicitudes = empleadoON.listadoSolicitudDePolizas();
+			List<SolicitudDePoliza> soli = onPoliza.listadoSolicitudDePolizas();
+			System.out.println(soli.size());
+			List<SolicitudDePoliza> actual = new ArrayList<SolicitudDePoliza>();
+			for (SolicitudDePoliza sol : soli) {
+				if (sol.getEstadoPoliza().equals("Solicitando")) {
+					actual.add(sol);
+				}
+			}
+			return actual;
+		}
+		/**
+		 * Metodo para cargar las solicitudes de Poliza
+		 */
+		public void loadDataSol() {
+			solicitudes = new ArrayList<SolicitudDePoliza>();
+			System.out.println("ENTRAAAAAAAA EN LOADDATASOL");
+			// solicitudes = empleadoON.listadoSolicitudDePolizas();
+			List<SolicitudDePoliza> soli = onPoliza.listadoSolicitudDePolizas();
+			System.out.println(soli.size());
+			List<SolicitudDePoliza> actual = new ArrayList<SolicitudDePoliza>();
+			for (SolicitudDePoliza sol : soli) {
+				if (sol.getEstadoPoliza().equals("Solicitando")) {
+					actual.add(sol);
+				}
+			}
+			solicitudes = actual;
+		}
+
+
+	
+
+
+		public GestionPolizaONLocal getOnPoliza() {
+			return onPoliza;
+		}
+
+
+		public void setOnPoliza(GestionPolizaONLocal onPoliza) {
+			this.onPoliza = onPoliza;
+		}
+
+
+		public List<SolicitudDePoliza> getSolicitudes() {
+			return solicitudes;
+		}
+
+
+		public void setSolicitudes(List<SolicitudDePoliza> solicitudes) {
+			this.solicitudes = solicitudes;
+		}
+
+
+		public SolicitudDePoliza getSolicitudDePoliza() {
+			return solicitudDePoliza;
+		}
+
+
+		public void setSolicitudDePoliza(SolicitudDePoliza solicitudDePoliza) {
+			this.solicitudDePoliza = solicitudDePoliza;
+		}
+
+
+		public SolicitudDePoliza getSolicitudDePolizaAux() {
+			return solicitudDePolizaAux;
+		}
+
+
+		public void setSolicitudDePolizaAux(SolicitudDePoliza solicitudDePolizaAux) {
+			this.solicitudDePolizaAux = solicitudDePolizaAux;
+		}
+		/**
+		 * Metodo para obtenet la solicitud de Poliza que se desea visualizar
+		 * @param cod El parametro cod me permite devolver la solicitud de Poliza
+		 * con el codigo igual al parametro cod
+		 * @return Una solicitud de Poliza
+		 */
+		public String cargarSol(int cod) {
+			editable = true;
+			System.out.println("**********/****/--" + cod + editable);
+
+			for (SolicitudDePoliza sol : solicitudes) {
+				if (sol.getCodigoPoliza() == cod) {
+					solicitudDePoliza = sol;
+				}
+			}
+			return null;
+		}
+		/**
+		 * Metodo para actualizar el estado de una salicitud de Poliza
+		 * @param cod El parametro cod me permite actualizar la solicitud con el codigo igual al parametro cod
+		 * @return El nombre de la pagina del Jefe de Poliza
+		 */
+		/**
+		 * Metodo para actualizar el estado de una salicitud de Poliza
+		 * @param cod El parametro cod me permite actualizar la solicitud con el codigo igual al parametro cod
+		 * @return El nombre de la pagina del Jefe de Poliza
+		 */
+		public String aprobar(int cod) {
+			System.out.println("//////-/////////-/////" + empleado.getNombre());
+			for (SolicitudDePoliza sol : solicitudes) {
+				if (sol.getCodigoPoliza() == cod && sol.getEstadoPoliza().equalsIgnoreCase("Solicitando")) {
+
+					Poliza Poliza = new Poliza();
+					Poliza.setFechaRegistro(new Date());
+					Poliza.setInteres(12);
+					Poliza.setMonto(sol.getMontoPoliza());
+					Poliza.setJefeC(empleado);
+					Poliza.setEstado("Pendiente");
+					Poliza.setSolicitud(sol);
+					List<DetallePoliza> li = onPoliza.crearTablaAmortizacion(Integer.parseInt(sol.getMesesPoliza()),
+							sol.getMontoPoliza(), 12.00);
+					System.out.println(li.toString());
+					Poliza.setFechaVencimiento(li.get(li.size()-1).getFechaPago());
+					Poliza.setDetalles(li);
+					onPoliza.guardarPoliza(Poliza);
+					onPoliza.aprobarPoliza(Poliza, sol.getClientePoliza());
+					System.out.println(Poliza);
+					solicitudDePoliza.setEstadoPoliza("Aprobado");
+					onPoliza.actualizarSolicitudPoliza(solicitudDePoliza);
+					CuentaDeAhorro ccv = cuentaON.buscarCuentaDeAhorroCliente(sol.getClientePoliza().getCedula());
+					ccv.setSaldoCuentaDeAhorro(ccv.getSaldoCuentaDeAhorro() + sol.getMontoPoliza());
+					cuentaON.actualizarCuentaDeAhorro(ccv);
+					solicitudDePoliza = new SolicitudDePoliza();
+					editable = false;
+					editabledos = false;
+					loadDataSol();
+				}
+			}
+
+			return "PaginaJefeCredito";
+		}
+		
+
+		
+		/**
+		 * Metodo para rechazar una solicitud de Poliza
+		 * @return El nombre de la pagina del Jefe de Poliza
+		 */
+public String rechazar() {
+			solicitudDePoliza.setEstadoPoliza("Rechazado");
+
+			onPoliza.actualizarSolicitudPoliza(solicitudDePoliza);
+			System.out.println(motivo);
+			// System.out.println(SolicitudDePoliza.getCodigoPoliza());
+			onPoliza.rechazarPoliza(solicitudDePoliza.getClientePoliza(), motivo);
+			solicitudDePoliza = new SolicitudDePoliza();
+			editable = false;
+			editabledos = false;
+			loadDataSol();
+			return "PaginaJefeCredito";
+		}
+		
+/**
+ * Metodo para visualizar los documentos de una solicitud
+ * @param tipo El parametro tipo nos permite asignar el nombre del documento que se desea visualizar
+ * @throws IOException Excepcion para errores de visualizacion
+ */
+public void ver(String tipo) throws IOException {
+
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	ExternalContext externalContext = facesContext.getExternalContext();
+	HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+
+	File file = File.createTempFile("archivoTemp", ".pdf");
+	try (FileOutputStream fos = new FileOutputStream(file)) {
+		if (tipo.equalsIgnoreCase("cedula")) {
+			fos.write(solicitudDePoliza.getArCedula());
+		} else if (tipo.equalsIgnoreCase("planilla")) {
+			fos.write(solicitudDePoliza.getArPlanillaServicios());
+		}
+
+	}
+	BufferedInputStream input = null;
+	BufferedOutputStream output = null;
+
+	try {
+		// Open file.
+		input = new BufferedInputStream(new FileInputStream(file), 10240);
+
+		// Init servlet response.
+		response.reset();
+		response.setHeader("Content-Type", "application/pdf");
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		response.setHeader("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
+		output = new BufferedOutputStream(response.getOutputStream(), 10240);
+
+		// Write file contents to response.
+		byte[] buffer = new byte[10240];
+		int length;
+		while ((length = input.read(buffer)) > 0) {
+			output.write(buffer, 0, length);
+		}
+
+		// Finalize task.
+		output.flush();
+	} finally {
+
+	}
+
+	facesContext.responseComplete();
+}
+		
 }

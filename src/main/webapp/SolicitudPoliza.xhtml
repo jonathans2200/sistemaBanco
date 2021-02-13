@@ -56,7 +56,7 @@
 											<div class="form-group">
 												<label>Ingrese monto del Poliza a solicitar</label>
 												<h:inputText id="nombre"
-													value="#{clientesBean.solicitudDePoliza.montoPoliza}"
+													value="#{clientesBean.montoPoliza}"
 													type="text" class="form-control form-control-line">
 												</h:inputText>
 
@@ -64,7 +64,7 @@
 											<div class="form-group">
 												<label>Ingrese el plazo de Poliza en Dias</label>
 												<h:inputText id="apellido"
-													value="#{clientesBean.solicitudDePoliza.mesesPoliza}"
+													value="#{clientesBean.mesesPoliza}"
 													type="text" class="form-control form-control-line">
 												</h:inputText>
 											</div>
@@ -86,7 +86,9 @@
 													<f:ajax event="keyup" render="mensT" execute="in eg" />
 												</h:inputText>
 											</div>
-										
+										<h:outputText id="mensT"
+												value="#{clientesBean.obtenerInteres(clientesBean.mesesPoliza)}"
+												style="color: red" />
 											<h2 class="page-header">Cargar Documentos</h2>
 											<div class="form-group">
 												<div class="form-group">

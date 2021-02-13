@@ -75,14 +75,14 @@ public class GestionPolizaON implements GestionPolizaONLocal {
 	public void guardarSolicitudPoliza(SolicitudDePoliza solicituDePoliza) {
 		solicituDePoliza.setHistorialPoliza(solicituDePoliza.getHistorialPoliza());
 		solicituDePoliza.setSaldoCuenta(String.valueOf(saldoCuenta(solicituDePoliza)));
-		solicituDePoliza.setAnosCliente(obtenerEdad(solicituDePoliza.getClientePoliza().getFechaNacimiento()));
+		
 		solicituDePoliza.setCantidadPolizas(numeroPolizas(solicituDePoliza));
 
 		String poliza = "{\"POLIZA \":\"" + solicituDePoliza.getClientePoliza().getCedula() + ";"
 				+ String.valueOf(solicituDePoliza.getMesesPoliza()) + ";" + solicituDePoliza.getHistorialPoliza() + ";"
 				+ String.valueOf(solicituDePoliza.getMontoPoliza()) + ";" + solicituDePoliza.getSaldoCuenta() + ";"
 				+ String.valueOf(solicituDePoliza.getTasaPago()) + ";" + (solicituDePoliza.getActivo()) + ";"
-				+ String.valueOf(solicituDePoliza.getAnosCliente()) + ";"
+				
 				+ String.valueOf(solicituDePoliza.getCantidadPolizas()) + ";\"}";
 		try {
 			solicitudDePolizaDAO.insert(solicituDePoliza);
@@ -491,5 +491,11 @@ public class GestionPolizaON implements GestionPolizaONLocal {
 		return true;
 	}
 
-
+	/**
+	 * Método que permite listar las solicitudes de crédito.
+	 * 
+	 * @return Un lista con clases SolicitudDeCredito con los datos de las solicitudes de credito;
+	 */
+	
+	
 }

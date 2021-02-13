@@ -40,11 +40,11 @@ public class SolicitudDePoliza {
 	private String historialPoliza; 
 	private String saldoCuenta;  
 	private double tasaPago;  
-	private int anosCliente; 
+
 	private double totalPoliza;
 	private String activo; 
 	private int cantidadPolizas; 
-	private String tipoCliente;
+
 	public int getCodigoPoliza() {
 		return codigoPoliza;
 	}
@@ -124,13 +124,7 @@ public class SolicitudDePoliza {
 		this.tasaPago = tasaPago;
 	}
 	
-	public int getAnosCliente() {
-		return anosCliente;
-	}
-
-	public void setAnosCliente(int anosCliente) {
-		this.anosCliente = anosCliente;
-	}
+	
 
 	public int getCantidadPolizas() {
 		return cantidadPolizas;
@@ -138,21 +132,17 @@ public class SolicitudDePoliza {
 	public void setCantidadPolizas(int cantidadPolizas) {
 		this.cantidadPolizas = cantidadPolizas;
 	}
-	public String getTipoCliente() {
-		return tipoCliente;
-	}
-	public void setTipoCliente(String tipoCliente) {
-		this.tipoCliente = tipoCliente;
-	}
+
 	@Override
 	public String toString() {
-		return "SolicitudDePoliza [codigoPoliza=" + codigoPoliza + ", clientePoliza=" + clientePoliza
-				+ ", montoPoliza=" + montoPoliza + ", mesesPoliza=" + mesesPoliza + ", estadoPoliza="
-				+ estadoPoliza + ", arCedula=" + Arrays.toString(arCedula) + ", arPlanillaServicios="
-				+ Arrays.toString(arPlanillaServicios) + ", historialPoliza=" + historialPoliza + ", saldoCuenta="
-				+ saldoCuenta + ", tasaPago=" + tasaPago + ", añosCliente=" + anosCliente + ", cantidadPolizas="
-				+ cantidadPolizas + ", tipoCliente=" + tipoCliente + "]";
+		return "SolicitudDePoliza [codigoPoliza=" + codigoPoliza + ", clientePoliza=" + clientePoliza + ", montoPoliza="
+				+ montoPoliza + ", mesesPoliza=" + mesesPoliza + ", estadoPoliza=" + estadoPoliza + ", arCedula="
+				+ Arrays.toString(arCedula) + ", arPlanillaServicios=" + Arrays.toString(arPlanillaServicios)
+				+ ", historialPoliza=" + historialPoliza + ", saldoCuenta=" + saldoCuenta + ", tasaPago=" + tasaPago
+				+ ", totalPoliza=" + totalPoliza + ", activo=" + activo + ", cantidadPolizas=" + cantidadPolizas + "]";
 	}
+	
+
 	
 	
 }

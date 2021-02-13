@@ -24,7 +24,7 @@
     <!-- The datasource is bound into JNDI at this location. We reference 
         this in META-INF/persistence.xml -->
     <datasource jta="true" jndi-name="java:jboss/datasources/sisBancoNetDS" pool-name="ejsisBancoNetDS" enabled="true" use-java-context="true" use-ccm="true">
-                    <connection-url>jdbc:postgresql://localhost:5432/sisBancoNet</connection-url>
+                    <connection-url>jdbc:postgresql://localhost:5432/sistemaBancarioNet</connection-url>
                     <driver>postgresql-driver</driver>
                     <security>
                         <user-name>postgres</user-name>

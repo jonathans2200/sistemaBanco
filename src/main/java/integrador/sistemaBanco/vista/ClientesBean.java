@@ -25,7 +25,6 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.MoveEvent;
 import org.primefaces.model.file.UploadedFile;
 
-
 import integrador.sistemaBanco.model.Cliente;
 import integrador.sistemaBanco.model.CuentaDeAhorro;
 import integrador.sistemaBanco.model.Poliza;
@@ -52,7 +51,7 @@ import integrador.sistemaBanco.on.GestionTransaccionesONLocal;
  */
 @Named
 @SessionScoped
-public class ClientesBean implements Serializable  {
+public class ClientesBean implements Serializable {
 	// Atributos de la clase
 	@Inject
 	private GestionClienteONLocal gestionCliente;
@@ -64,7 +63,6 @@ public class ClientesBean implements Serializable  {
 	private GestionTransaccionesONLocal gestionTransaccion;
 	@Inject
 	private GestionPolizaONLocal gestionPolizas;
-	
 
 	private Cliente cliente;
 	private SolicitudDePoliza solicitudDePoliza;
@@ -87,7 +85,7 @@ public class ClientesBean implements Serializable  {
 	private String mesesPoliza;
 	private double interes;
 	private InputStream arCedula;
-	
+
 	private InputStream arPlanillaServicios;
 	private int codigoPoliza;
 	private boolean editable;
@@ -101,7 +99,7 @@ public class ClientesBean implements Serializable  {
 		listarClientes();
 		tipoTransaccion = "Todos";
 		System.out.println(lstClientes.size());
-		lstPolizasAprobados=new ArrayList<Poliza>();
+		lstPolizasAprobados = new ArrayList<Poliza>();
 		cuentaDeAhorro = new CuentaDeAhorro();
 		solicitudDePoliza = new SolicitudDePoliza();
 		cliente = new Cliente();
@@ -554,8 +552,6 @@ public class ClientesBean implements Serializable  {
 		return "ConsultaTransacciones";
 	}
 
-	
-	
 	public List<Poliza> getLstPolizasAprobados() {
 		return lstPolizasAprobados;
 	}
@@ -580,7 +576,7 @@ public class ClientesBean implements Serializable  {
 	 */
 	public void validarFechas() throws Exception {
 		if (this.fechaInicio != null && this.fechaFinal != null) {
-		
+
 			DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String inicioF = hourdateFormat.format(fechaInicio);
 			String finalF = hourdateFormat.format(fechaFinal);
@@ -694,8 +690,6 @@ public class ClientesBean implements Serializable  {
 		return null;
 	}
 
-	
-
 	/**
 	 * Metodo que me permite asignar un archivo al atributo de tipo InputStream
 	 * arCedula de la clase
@@ -764,7 +758,7 @@ public class ClientesBean implements Serializable  {
 		this.gestionCuenta = gestionCuenta;
 	}
 
-	public GestionSesionONLocal  getGestionSesion() {
+	public GestionSesionONLocal getGestionSesion() {
 		return gestionSesion;
 	}
 
@@ -780,7 +774,6 @@ public class ClientesBean implements Serializable  {
 		this.gestionPolizas = gestionPolizas;
 	}
 
-	
 	public double getTotalPoliza() {
 		return totalPoliza;
 	}
@@ -829,8 +822,10 @@ public class ClientesBean implements Serializable  {
 		this.arPlanillaServicios = arPlanillaServicios;
 	}
 
-	/** 
-	 * Metodo que permite guardar una solicitud de Poliza con sus respectivos atributos
+	/**
+	 * Metodo que permite guardar una solicitud de Poliza con sus respectivos
+	 * atributos
+	 * 
 	 * @return Pagina en donde se realiza la Solicitud de Poliza
 	 * @throws IOException
 	 */
@@ -841,47 +836,51 @@ public class ClientesBean implements Serializable  {
 		solicitudDePoliza.setArCedula(gestionPolizas.toByteArray(arCedula));
 		solicitudDePoliza.setArPlanillaServicios(gestionPolizas.toByteArray(arPlanillaServicios));
 		solicitudDePoliza.setTasaPago(obtenerInteres(Integer.parseInt(mesesPoliza)));
+		System.out.println("valor de interz1111111111111111111111 "+  obtenerInteres(Integer.parseInt(mesesPoliza)));
 		solicitudDePoliza.setTotalPoliza(calcular());
 		solicitudDePoliza.setMontoPoliza(montoPoliza);
 		solicitudDePoliza.setMesesPoliza(mesesPoliza);
-		
-		if(gestionPolizas.verificarSolicitudSolicitando(cedulaParametro)) { 
+
+		if (gestionPolizas.verificarSolicitudSolicitando(cedulaParametro)) {
 			gestionPolizas.guardarSolicitudPoliza(solicitudDePoliza);
 			addMessage("Confirmacion", "Solicitud Guardada");
-		}else { 
+		} else {
 			addMessage("Atencion", "Usted ya ha enviado una solicitud de Poliza para su aprovacion");
 		}
 		solicitudDePoliza = new SolicitudDePoliza();
 		return "SolicitudPoliza";
 	}
-	
-public double calcular(){
-	int meses=Integer.parseInt(mesesPoliza);
-	return ((montoPoliza*meses)*Integer.parseInt(mesesPoliza))/100;
-}
 
-/**
- * metodo que permite saber cual es el interes de acuerdo al tiempo en dias
- * @param tiempo los dias que va a estar la poliza
- * 
- * @return
- */
-public Double obtenerInteres(int tiempo) {
-
-	if (tiempo >= 30 && tiempo <= 59) {
-		return 5.50;
-	} else if (tiempo >= 60 && tiempo <= 89) {
-		return 5.75;
-	} else if (tiempo >= 90 && tiempo <= 179) {
-		return 6.25;
-	} else if (tiempo >= 180 && tiempo <= 269) {
-		return 7.00;
-	} else if (tiempo >= 270 && tiempo <= 359) {
-		return 7.50;
-	} else if (tiempo >= 360) {
-		return 8.50;
+	public double calcular() {
+		int meses = Integer.parseInt(mesesPoliza);
+		return ((montoPoliza * meses) * Integer.parseInt(mesesPoliza)) / 100;
 	}
-	return null;
 
-}
+	/**
+	 * metodo que permite saber cual es el interes de acuerdo al tiempo en dias
+	 * 
+	 * @param tiempo los dias que va a estar la poliza
+	 * 
+	 * @return
+	 */
+	public Double obtenerInteres(int tiempo) {
+		double retorno = 0.00;
+		if (tiempo >= 30 && tiempo <= 59) {
+			retorno = 5.50;
+
+		} else if (tiempo >= 60 && tiempo <= 89) {
+			retorno = 5.75;
+		} else if (tiempo >= 90 && tiempo <= 179) {
+			retorno = 6.25;
+		} else if (tiempo >= 180 && tiempo <= 269) {
+			retorno = 7.00;
+		} else if (tiempo >= 270 && tiempo <= 359) {
+			retorno = 7.50;
+		} else if (tiempo >= 360) {
+			retorno = 8.50;
+		}
+		return retorno;
+
+	}
+
 }

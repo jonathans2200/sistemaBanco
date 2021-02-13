@@ -47,43 +47,47 @@
 							</h:column>
 						</h:dataTable>
 					</div>
+
+
+
+
+
+					<h1 class="page-header">Polizas Aprobados</h1>
+					<div class="table-responsive">
+						<h:dataTable value="#{clientesBean.lstPolizasAprobados}"
+							var="poliza"
+							class="table table-bordered table-hover table-striped">
+							<h:column>
+								<f:facet name="header">Codigo de Poliza</f:facet>
+						#{poliza.codigoPoliza}
+						</h:column>
+							<h:column>
+								<f:facet name="header">Dias Plazo</f:facet>
+							#{poliza.tiempo}
+						</h:column>
+							<h:column>
+								<f:facet name="header">fecha captacion</f:facet>
+							#{poliza.fechaRegistro}
+						</h:column>
+
+							<h:column>
+								<f:facet name="header">fecha Vencimiento</f:facet>
+							#{poliza.fechaVencimiento}
+						</h:column>
+							<h:column>
+								<f:facet name="header">Capital</f:facet>
+							#{poliza.codigoPoliza}
+						</h:column>
+							<h:column>
+								<f:facet name="header">Interez</f:facet>
+						#{poliza.interes}
+						</h:column>
+
+						</h:dataTable>
+					</div>
 				</div>
+
 			</h:form>
-
-			<h:panelGroup id="Detalles">
-				<h:form>
-					<h2>DETALLE DE POLIZA</h2>
-					<h:dataTable value="" var="tra"
-						class="table table-bordered table-hover table-striped">
-						<h:column>
-							<f:facet name="header">Codigo de Poliza</f:facet>
-
-						</h:column>
-						<h:column>
-							<f:facet name="header">Dias Plazo</f:facet>
-
-						</h:column>
-						<h:column>
-							<f:facet name="header">fecha captacion</f:facet>
-
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">fecha Vencimiento</f:facet>
-
-						</h:column>
-						<h:column>
-							<f:facet name="header">Capital</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Interez</f:facet>
-						</h:column>
-
-					</h:dataTable>
-
-				</h:form>
-			</h:panelGroup>
-
 		</ui:define>
 	</ui:composition>
 </h:body>
